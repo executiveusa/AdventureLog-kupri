@@ -164,12 +164,12 @@
     <div class="invitation-page" id="invitationPage">
         <div class="invitation-card">
             <div class="gift-icon">🎁</div>
-            <h1 class="invitation-title">You're Invited!</h1>
-            <h2 class="invitation-subtitle">A Special Birthday Surprise</h2>
-            <p class="invitation-text">Get ready for an unforgettable adventure through the beautiful streets of Cuernavaca, Mexico.</p>
-            <p class="invitation-text">A treasure hunt of amazing locations awaits, each one carefully chosen just for you.</p>
+            <h1 class="invitation-title">¡Estás Invitada!</h1>
+            <h2 class="invitation-subtitle">Una Sorpresa Especial de Cumpleaños</h2>
+            <p class="invitation-text">Prepárate para una aventura inolvidable por las hermosas calles de Cuernavaca, México.</p>
+            <p class="invitation-text">Una búsqueda del tesoro con lugares increíbles te espera, cada uno cuidadosamente elegido para ti.</p>
             <button class="start-btn" onclick="startAdventure()">
-                Open Your Surprise ✨
+                Abre Tu Sorpresa ✨
             </button>
             <div class="decorations">🎈 🎉 🎊 🎂</div>
         </div>
@@ -178,19 +178,28 @@
     <!-- Treasure Hunt -->
     <div class="treasure-hunt" id="treasureHunt">
         <div class="lang-toggle" onclick="toggleLanguage()">
-            <span id="langText">🌐 Switch to Español</span>
+            <span id="langText">🌐 English</span>
         </div>
 
         <div class="hunt-header">
-            <h1 class="hunt-title">Cuernavaca Birthday Adventure</h1>
-            <p class="hunt-subtitle">6 Magical Locations Await You</p>
+            <h1 class="hunt-title">Aventura de Cumpleaños en Cuernavaca</h1>
+            <p class="hunt-subtitle">6 Lugares Mágicos Te Esperan</p>
         </div>
 
         <div class="locations-container" id="locationsContainer"></div>
     </div>
 
     <script>
-        let currentLang = 'en';
+        let currentLang = 'es'; // Spanish first
+        let unlockedLocations = [1]; // Only first location unlocked
+        const passwords = {
+            1: 'AGUA2026',
+            2: 'BOSQUE2026',
+            3: 'HISTORIA2026',
+            4: 'FLORES2026',
+            5: 'CENA2026',
+            6: 'MARIPOSA2026'
+        };
         const locations = [
             {
                 step: 1,
@@ -280,35 +289,80 @@
             locations.forEach((loc, index) => {
                 const card = document.createElement('div');
                 card.className = 'location-card';
-                card.innerHTML = `
-                    <img src="${loc.photo}" alt="${loc.locationName}" class="location-image">
-                    <div class="location-content">
-                        <span class="location-number">Location ${loc.step}</span>
-                        <h2 class="location-title">${currentLang === 'en' ? loc.title_en : loc.title_es}</h2>
-                        <p class="location-clue">${currentLang === 'en' ? loc.clue_en : loc.clue_es}</p>
-                        <p class="location-description">${currentLang === 'en' ? loc.description_en : loc.description_es}</p>
-                        <p class="location-name">📍 ${loc.locationName}</p>
-                        <a href="${loc.googleMapsUrl}" target="_blank" class="maps-btn">Open in Google Maps 🗺️</a>
-                    </div>
-                `;
-                container.appendChild(card);
+                const isUnlocked = unlockedLocations.includes(loc.step);
 
-                // Confetti on scroll into view
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                observer.observe(card);
+                if (isUnlocked) {
+                    // Unlocked card
+                    card.innerHTML = `
+                        <img src="${loc.photo}" alt="${loc.locationName}" class="location-image">
+                        <div class="location-content">
+                            <span class="location-number">${currentLang === 'es' ? 'Ubicación' : 'Location'} ${loc.step}</span>
+                            <h2 class="location-title">${currentLang === 'en' ? loc.title_en : loc.title_es}</h2>
+                            <p class="location-clue">${currentLang === 'en' ? loc.clue_en : loc.clue_es}</p>
+                            <p class="location-description">${currentLang === 'en' ? loc.description_en : loc.description_es}</p>
+                            <p class="location-name">📍 ${loc.locationName}</p>
+                            <a href="${loc.googleMapsUrl}" target="_blank" class="maps-btn">${currentLang === 'es' ? 'Abrir en Google Maps' : 'Open in Google Maps'} 🗺️</a>
+                        </div>
+                    `;
+
+                    // Confetti on scroll into view
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                    observer.observe(card);
+                } else {
+                    // Locked card
+                    card.innerHTML = `
+                        <div class="location-content" style="text-align: center; padding: 60px 30px;">
+                            <div style="font-size: 60px; margin-bottom: 20px;">🔒</div>
+                            <span class="location-number">${currentLang === 'es' ? 'Ubicación' : 'Location'} ${loc.step}</span>
+                            <h2 class="location-title" style="filter: blur(8px);">${currentLang === 'en' ? loc.title_en : loc.title_es}</h2>
+                            <p style="font-size: 18px; color: #6b7280; margin: 20px 0;">${currentLang === 'es' ? '¡Pide la contraseña para desbloquear esta ubicación!' : 'Ask for the password to unlock this location!'}</p>
+                            <input type="text" id="password-${loc.step}" placeholder="${currentLang === 'es' ? 'Ingresa la contraseña' : 'Enter password'}" style="padding: 12px 20px; font-size: 16px; border: 2px solid #e5e7eb; border-radius: 8px; width: 250px; text-align: center; text-transform: uppercase;">
+                            <br><br>
+                            <button onclick="unlockLocation(${loc.step})" class="maps-btn">${currentLang === 'es' ? 'Desbloquear' : 'Unlock'} ✨</button>
+                            <p id="error-${loc.step}" style="color: #ef4444; margin-top: 10px; display: none;">${currentLang === 'es' ? '❌ Contraseña incorrecta' : '❌ Incorrect password'}</p>
+                        </div>
+                    `;
+                }
+                container.appendChild(card);
             });
+        }
+
+        function unlockLocation(step) {
+            const input = document.getElementById(`password-${step}`);
+            const error = document.getElementById(`error-${step}`);
+            const enteredPassword = input.value.toUpperCase().trim();
+
+            if (enteredPassword === passwords[step]) {
+                unlockedLocations.push(step);
+                confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
+                renderLocations();
+                // Scroll to the newly unlocked location
+                setTimeout(() => {
+                    const cards = document.querySelectorAll('.location-card');
+                    cards[step - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+                setTimeout(() => error.style.display = 'none', 3000);
+            }
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'es' : 'en';
-            document.getElementById('langText').textContent = currentLang === 'en' ? '🌐 Switch to Español' : '🌐 Switch to English';
+            document.getElementById('langText').textContent = currentLang === 'es' ? '🌐 English' : '🌐 Español';
+
+            // Update hunt header
+            document.querySelector('.hunt-title').textContent = currentLang === 'es' ? 'Aventura de Cumpleaños en Cuernavaca' : 'Cuernavaca Birthday Adventure';
+            document.querySelector('.hunt-subtitle').textContent = currentLang === 'es' ? '6 Lugares Mágicos Te Esperan' : '6 Magical Locations Await You';
+
             renderLocations();
         }
 

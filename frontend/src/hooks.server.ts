@@ -4,6 +4,17 @@ const PUBLIC_SERVER_URL = process.env['PUBLIC_SERVER_URL'];
 
 export const authHook: Handle = async ({ event, resolve }) => {
 	event.cookies.delete('csrftoken', { path: '/' });
+
+	// Public routes that don't require authentication
+	const publicRoutes = ['/surprise'];
+	const isPublicRoute = publicRoutes.some(route => event.url.pathname.startsWith(route));
+
+	// Skip auth check for public routes
+	if (isPublicRoute) {
+		event.locals.user = null;
+		return await resolve(event);
+	}
+
 	try {
 		let sessionid = event.cookies.get('sessionid');
 

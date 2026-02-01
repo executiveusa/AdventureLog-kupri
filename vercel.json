@@ -1,5 +1,6 @@
 {
   "buildCommand": "cd frontend && NODE_ENV=production npm run build",
+  "outputDirectory": "frontend/.vercel/output",
   "installCommand": "npm install --prefix frontend",
   "framework": "sveltekit"
 }

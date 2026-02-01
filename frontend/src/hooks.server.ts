@@ -100,6 +100,8 @@ export const themeHook: Handle = async ({ event, resolve }) => {
 export const i18nHook: Handle = async ({ event, resolve }) => {
 	let locale = event.cookies.get('locale');
 	if (!locale) {
+		// Set a default locale if none is found
+		event.locals.locale = 'en';
 		return await resolve(event);
 	}
 	event.locals.locale = locale; // Store the locale in locals

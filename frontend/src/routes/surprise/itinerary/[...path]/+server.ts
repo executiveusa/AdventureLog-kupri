@@ -4,6 +4,11 @@ import type { RequestHandler } from '@sveltejs/kit';
 export const GET: RequestHandler = async ({ params }) => {
 	const path = params.path;
 
+	// Validate that path is provided
+	if (!path) {
+		return new Response('Not Found', { status: 404 });
+	}
+
 	// Validate that the requested file is an itinerary JSON
 	if (!path.endsWith('.json')) {
 		return new Response('Not Found', { status: 404 });

@@ -9,5 +9,8 @@ export default defineConfig({
 		Icons({
 			compiler: 'svelte'
 		})
-	]
+	],
+	build: {
+		chunkSizeWarningLimit: 1000
+	}
 });

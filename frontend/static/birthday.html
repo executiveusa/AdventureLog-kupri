@@ -160,15 +160,20 @@
     </style>
 </head>
 <body>
+    <!-- Language Toggle - Always Visible -->
+    <div class="lang-toggle" onclick="toggleLanguage()">
+        <span id="langText">🌐 English</span>
+    </div>
+
     <!-- Invitation Page -->
     <div class="invitation-page" id="invitationPage">
         <div class="invitation-card">
             <div class="gift-icon">🎁</div>
-            <h1 class="invitation-title">¡Estás Invitada!</h1>
-            <h2 class="invitation-subtitle">Una Sorpresa Especial de Cumpleaños</h2>
-            <p class="invitation-text">Prepárate para una aventura inolvidable por las hermosas calles de Cuernavaca, México.</p>
-            <p class="invitation-text">Una búsqueda del tesoro con lugares increíbles te espera, cada uno cuidadosamente elegido para ti.</p>
-            <button class="start-btn" onclick="startAdventure()">
+            <h1 class="invitation-title" id="inviteTitle">¡Estás Invitada!</h1>
+            <h2 class="invitation-subtitle" id="inviteSubtitle">Una Sorpresa Especial de Cumpleaños</h2>
+            <p class="invitation-text" id="inviteText1">Prepárate para una aventura inolvidable por las hermosas calles de Cuernavaca, México.</p>
+            <p class="invitation-text" id="inviteText2">Una búsqueda del tesoro con lugares increíbles te espera, cada uno cuidadosamente elegido para ti.</p>
+            <button class="start-btn" id="startBtn" onclick="startAdventure()">
                 Abre Tu Sorpresa ✨
             </button>
             <div class="decorations">🎈 🎉 🎊 🎂</div>
@@ -177,9 +182,6 @@
 
     <!-- Treasure Hunt -->
     <div class="treasure-hunt" id="treasureHunt">
-        <div class="lang-toggle" onclick="toggleLanguage()">
-            <span id="langText">🌐 English</span>
-        </div>
 
         <div class="hunt-header">
             <h1 class="hunt-title">Aventura de Cumpleaños en Cuernavaca</h1>
@@ -359,9 +361,22 @@
             currentLang = currentLang === 'en' ? 'es' : 'en';
             document.getElementById('langText').textContent = currentLang === 'es' ? '🌐 English' : '🌐 Español';
 
+            // Update invitation page
+            if (document.getElementById('inviteTitle')) {
+                document.getElementById('inviteTitle').textContent = currentLang === 'es' ? '¡Estás Invitada!' : "You're Invited!";
+                document.getElementById('inviteSubtitle').textContent = currentLang === 'es' ? 'Una Sorpresa Especial de Cumpleaños' : 'A Special Birthday Surprise';
+                document.getElementById('inviteText1').textContent = currentLang === 'es' ? 'Prepárate para una aventura inolvidable por las hermosas calles de Cuernavaca, México.' : 'Get ready for an unforgettable adventure through the beautiful streets of Cuernavaca, Mexico.';
+                document.getElementById('inviteText2').textContent = currentLang === 'es' ? 'Una búsqueda del tesoro con lugares increíbles te espera, cada uno cuidadosamente elegido para ti.' : 'A treasure hunt of amazing locations awaits, each one carefully chosen just for you.';
+                document.getElementById('startBtn').innerHTML = currentLang === 'es' ? 'Abre Tu Sorpresa ✨' : 'Open Your Surprise ✨';
+            }
+
             // Update hunt header
-            document.querySelector('.hunt-title').textContent = currentLang === 'es' ? 'Aventura de Cumpleaños en Cuernavaca' : 'Cuernavaca Birthday Adventure';
-            document.querySelector('.hunt-subtitle').textContent = currentLang === 'es' ? '6 Lugares Mágicos Te Esperan' : '6 Magical Locations Await You';
+            const huntTitle = document.querySelector('.hunt-title');
+            const huntSubtitle = document.querySelector('.hunt-subtitle');
+            if (huntTitle) {
+                huntTitle.textContent = currentLang === 'es' ? 'Aventura de Cumpleaños en Cuernavaca' : 'Cuernavaca Birthday Adventure';
+                huntSubtitle.textContent = currentLang === 'es' ? '6 Lugares Mágicos Te Esperan' : '6 Magical Locations Await You';
+            }
 
             renderLocations();
         }

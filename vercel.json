@@ -1,5 +1,11 @@
 {
-  "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/.vercel/output",
-  "installCommand": "npm install --prefix frontend"
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": ".vercel/output"
+      }
+    }
+  ]
 }

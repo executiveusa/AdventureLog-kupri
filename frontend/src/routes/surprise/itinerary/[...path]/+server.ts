@@ -24,3 +24,15 @@ export const GET: RequestHandler = async ({ params }) => {
 		return new Response('Internal Server Error', { status: 500 });
 	}
 };
+
+// Handle preflight requests for CORS
+export const OPTIONS: RequestHandler = async () => {
+	return new Response(null, {
+		status: 200,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET, OPTIONS',
+			'Access-Control-Allow-Headers': 'Content-Type'
+		}
+	});
+};

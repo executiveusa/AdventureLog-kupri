@@ -1,9 +1,9 @@
-<script lang="ts">
+﻿<script lang="ts">
 	import Footer from '$lib/components/Footer.svelte';
 	import { playClick } from '$lib/utils/sound';
 	import { hapticTap } from '$lib/utils/haptic';
 
-	// Pricing in MXN — adjusted for the Mexican market (April 2026)
+	// Pricing in MXN â€” adjusted for the Mexican market (April 2026)
 	const tiers = [
 		{
 			name: 'Explorador',
@@ -15,9 +15,9 @@
 			description: 'Comienza a planear viajes conscientes hoy.',
 			description_en: 'Start planning conscious travel today.',
 			features: [
-				{ es: 'Acceso al directorio ecoturístico', en: 'Eco-tourism directory access' },
-				{ es: 'Lee todos los artículos del Diario', en: 'Read all Journal articles' },
-				{ es: 'Herramientas básicas de planificación', en: 'Basic trip planning tools' },
+				{ es: 'Acceso al directorio ecoturÃ­stico', en: 'Eco-tourism directory access' },
+				{ es: 'Lee todos los artÃ­culos del Diario', en: 'Read all Journal articles' },
+				{ es: 'Herramientas bÃ¡sicas de planificaciÃ³n', en: 'Basic trip planning tools' },
 				{ es: 'Acceso al foro comunitario', en: 'Community forum access' }
 			],
 			cta: 'Comenzar',
@@ -31,12 +31,12 @@
 			price_en: '$28 USD',
 			period: '/mes',
 			period_en: '/month',
-			description: 'Planificación asistida por IA con verificación local.',
+			description: 'PlanificaciÃ³n asistida por IA con verificaciÃ³n local.',
 			description_en: 'AI-assisted planning with local verification.',
 			features: [
 				{ es: 'Todo lo de Explorador', en: 'Everything in Explorer' },
-				{ es: 'Generación de itinerarios con IA', en: 'AI itinerary generation' },
-				{ es: 'Verificación por guías locales', en: 'Local guide verification' },
+				{ es: 'GeneraciÃ³n de itinerarios con IA', en: 'AI itinerary generation' },
+				{ es: 'VerificaciÃ³n por guÃ­as locales', en: 'Local guide verification' },
 				{ es: 'Viajes guardados ilimitados', en: 'Unlimited saved trips' },
 				{ es: 'Soporte comunitario prioritario', en: 'Priority community support' },
 				{ es: 'Concierge por WhatsApp (horario comercial)', en: 'WhatsApp concierge (business hours)' }
@@ -57,19 +57,19 @@
 			features: [
 				{ es: 'Todo lo de Orientador', en: 'Everything in Pathfinder' },
 				{ es: 'Agente Hermes dedicado', en: 'Dedicated Hermes agent' },
-				{ es: 'Adaptación de itinerario en tiempo real', en: 'Real-time itinerary adaptation' },
+				{ es: 'AdaptaciÃ³n de itinerario en tiempo real', en: 'Real-time itinerary adaptation' },
 				{ es: 'Concierge WhatsApp 24/7', en: '24/7 WhatsApp concierge' },
-				{ es: 'Traducción VisionClaw y análisis de escenas', en: 'VisionClaw translation & scene analysis' },
+				{ es: 'TraducciÃ³n VisionClaw y anÃ¡lisis de escenas', en: 'VisionClaw translation & scene analysis' },
 				{ es: 'Descuentos exclusivos con socios (15-30%)', en: 'Exclusive partner discounts (15-30%)' },
 				{ es: 'Plantillas de experiencias sorpresa', en: 'Surprise experience templates' },
-				{ es: 'Videollamadas mensuales con guías locales', en: 'Monthly local guide video calls' }
+				{ es: 'Videollamadas mensuales con guÃ­as locales', en: 'Monthly local guide video calls' }
 			],
 			cta: 'Prueba Gratis',
 			cta_en: 'Start Free Trial',
 			accent: true
 		},
 		{
-			name: 'Círculo Querencia',
+			name: 'CÃ­rculo Querencia',
 			name_en: 'Querencia Circle',
 			price: '$8,499',
 			price_en: '$486 USD',
@@ -84,8 +84,8 @@
 				{ es: 'Gerente de cuenta dedicado', en: 'Dedicated account manager' },
 				{ es: 'Materiales de marketing co-branded', en: 'Co-branded marketing materials' },
 				{ es: 'Reparto de ingresos por referidos', en: 'Revenue sharing on referrals' },
-				{ es: 'Retiro anual de planificación (México)', en: 'Annual planning retreat (Mexico)' },
-				{ es: 'Línea directa con el equipo fundador', en: 'Direct line to founding team' }
+				{ es: 'Retiro anual de planificaciÃ³n (MÃ©xico)', en: 'Annual planning retreat (Mexico)' },
+				{ es: 'LÃ­nea directa con el equipo fundador', en: 'Direct line to founding team' }
 			],
 			cta: 'Aplicar Ahora',
 			cta_en: 'Apply Now',
@@ -101,25 +101,25 @@
 </script>
 
 <svelte:head>
-	<title>Precios — Querencia™</title>
-	<meta name="description" content="Precios transparentes para planificación de viajes eco-luxury. Desde exploración gratuita hasta experiencias curadas de servicio completo. Pagos en pesos mexicanos." />
+	<title>Precios â€” Querenciaâ„¢</title>
+	<meta name="description" content="Precios transparentes para planificaciÃ³n de viajes eco-luxury. Desde exploraciÃ³n gratuita hasta experiencias curadas de servicio completo. Pagos en pesos mexicanos." />
 </svelte:head>
 
 <div class="pricing-root">
 	<header class="pricing-header">
-		<a href="/" class="back-link">← Querencia™</a>
-		<p class="overline">Precios Transparentes · Transparent Pricing</p>
+		<a href="/" class="back-link">â† Querenciaâ„¢</a>
+		<p class="overline">Precios Transparentes Â· Transparent Pricing</p>
 		<h1>Invierte en Viajes que Retribuyen</h1>
-		<p class="header-sub-es">Cada nivel financia reforestación y turismo comunitario. Entre más exploras, más restauramos.</p>
+		<p class="header-sub-es">Cada nivel financia reforestaciÃ³n y turismo comunitario. Entre mÃ¡s exploras, mÃ¡s restauramos.</p>
 		<p class="header-sub-en">Every tier funds reforestation and community tourism. The more you explore, the more we restore.</p>
-		<p class="currency-note">Precios en pesos mexicanos (MXN) · USD equivalents shown</p>
+		<p class="currency-note">Precios en pesos mexicanos (MXN) Â· USD equivalents shown</p>
 	</header>
 
 	<div class="tiers-grid">
 		{#each tiers as tier}
 			<div class="tier-card" class:accent={tier.accent}>
 				{#if tier.accent}
-					<div class="tier-badge">Más Popular · Most Popular</div>
+					<div class="tier-badge">MÃ¡s Popular Â· Most Popular</div>
 				{/if}
 				<div class="tier-head">
 					<h2>{tier.name}</h2>
@@ -129,7 +129,7 @@
 						{#if tier.period}<span class="period">{tier.period}</span>{/if}
 					</div>
 					{#if tier.price_en && tier.price !== 'Gratis'}
-						<p class="price-usd">≈ {tier.price_en}{tier.period_en}</p>
+						<p class="price-usd">â‰ˆ {tier.price_en}{tier.period_en}</p>
 					{/if}
 					<p class="tier-desc">{tier.description}</p>
 					<p class="tier-desc-en">{tier.description_en}</p>
@@ -137,7 +137,7 @@
 				<ul class="tier-features">
 					{#each tier.features as feature}
 						<li>
-							<span class="check">✓</span>
+							<span class="check">âœ“</span>
 							<span class="feature-text">
 								<span class="feat-es">{feature.es}</span>
 								<span class="feat-en">{feature.en}</span>
@@ -158,8 +158,8 @@
 	</div>
 
 	<section class="guarantee">
-		<h3>La Garantía Querencia</h3>
-		<p class="guarantee-es">Si tu primera experiencia curada no supera tus expectativas, reembolsamos tu suscripción y donamos tu cuota a programas de reforestación. Sin preguntas. Sin fricciones.</p>
+		<h3>La GarantÃ­a Querencia</h3>
+		<p class="guarantee-es">Si tu primera experiencia curada no supera tus expectativas, reembolsamos tu suscripciÃ³n y donamos tu cuota a programas de reforestaciÃ³n. Sin preguntas. Sin fricciones.</p>
 		<p class="guarantee-en">If your first curated experience doesn't exceed expectations, we'll refund your subscription and donate your fee to reforestation. No questions. No friction.</p>
 	</section>
 
@@ -173,7 +173,7 @@
 			</div>
 			<div class="stack-item">
 				<span class="stack-value">40+ hrs</span>
-				<span class="stack-label-es">Tiempo de planificación ahorrado por viaje con IA + verificación local</span>
+				<span class="stack-label-es">Tiempo de planificaciÃ³n ahorrado por viaje con IA + verificaciÃ³n local</span>
 				<span class="stack-label-en">Planning time saved per trip with AI + local verification</span>
 			</div>
 			<div class="stack-item">
@@ -183,7 +183,7 @@
 			</div>
 			<div class="stack-item">
 				<span class="stack-value">5%</span>
-				<span class="stack-label-es">De los ingresos destinados a reforestación e infraestructura comunitaria</span>
+				<span class="stack-label-es">De los ingresos destinados a reforestaciÃ³n e infraestructura comunitaria</span>
 				<span class="stack-label-en">Of revenue directed to reforestation & community infrastructure</span>
 			</div>
 		</div>
@@ -259,15 +259,6 @@
 		margin: 0.5rem 0 0;
 	}
 
-	/* keep old header-sub for compat */
-	.header-sub {
-		font-size: 1rem;
-		color: rgba(232, 226, 212, 0.5);
-		max-width: 32rem;
-		margin: 0 auto;
-		line-height: 1.6;
-	}
-
 	.tiers-grid {
 		max-width: 76rem;
 		margin: 2rem auto 0;
@@ -300,7 +291,30 @@
 		border-color: rgba(196, 150, 60, 0.25);
 	}
 
-	.tier-card.acc4rem;
+	.tier-card.accent {
+		border-color: #c4963c;
+		background: rgba(196, 150, 60, 0.04);
+	}
+
+	.tier-badge {
+		font-size: 0.65rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #c4963c;
+		border: 1px solid rgba(196, 150, 60, 0.4);
+		border-radius: 2px;
+		padding: 0.2rem 0.5rem;
+		display: inline-block;
+		margin-bottom: 0.75rem;
+	}
+
+	.tier-head {
+		margin-bottom: 1.25rem;
+	}
+
+	.tier-head h2 {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1.35rem;
 		font-weight: 700;
 		margin: 0 0 0.15rem;
 		color: #e8e2d4;
@@ -312,6 +326,25 @@
 		text-transform: uppercase;
 		color: rgba(232, 226, 212, 0.3);
 		margin: 0 0 0.6rem;
+	}
+
+	.tier-price {
+		display: flex;
+		align-items: baseline;
+		gap: 0.2rem;
+		margin-bottom: 0.35rem;
+	}
+
+	.price {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: #c4963c;
+	}
+
+	.period {
+		font-size: 0.8rem;
+		color: rgba(232, 226, 212, 0.4);
 	}
 
 	.price-usd {
@@ -331,61 +364,7 @@
 		font-size: 0.74rem;
 		color: rgba(232, 226, 212, 0.28);
 		line-height: 1.4;
-		font-style: italicrem;
-		color: #e8e2d4;
-	}
-
-	.tier-price {
-		display: flex;
-		align-items: baseline;
-		gap: 0.2rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.price {
-		font-family: 'Playfair Display', Georgia, serif;
-		font-size: 2.5rem;
-		font-weight: 700;
-		color: #c4963c;
-	}
-
-	.
-
-	.feature-text {
-		display: flex;
-		flex-direction: column;
-		gap: 0.05rem;
-	}
-
-	.feat-es {
-		color: rgba(232, 226, 212, 0.7);
-	}
-
-	.feat-en {
-		font-size: 0.72rem;
-		color: rgba(232, 226, 212, 0.28);
 		font-style: italic;
-	}period {
-		font-size: 0.8rem;
-		color: rgba(232, 226, 212, 0.4);
-	}
-
-	.tier-desc {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.1rem;
-	}
-
-	.cta-en {
-		font-size: 0.65rem;
-		font-weight: 400;
-		letter-spacing: 0.04em;
-		opacity: 0.45;
-		text-transform: none;
-		font-size: 0.85rem;
-		color: rgba(232, 226, 212, 0.45);
-		line-height: 1.5;
 		margin: 0;
 	}
 
@@ -396,34 +375,7 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		tier-price {
-		display: flex;
-		align-items: baseline;
-		gap: 0.2rem;
-		margin-bottom: 0.35rem;
-	}
-
-	.guarantee-es {
-		font-size: 0.92rem;
-		line-height: 1.7;
-		color: rgba(232, 226, 212, 0.65);
-		margin: 0 0 0.4rem;
-	}
-
-	.guarantee-en {
-		font-size: 0.8rem;
-		line-height: 1.6;
-		color: rgba(232, 226, 212, 0.3);
-		font-style: italic;
-		color: #c4963c;
-	}
-
-	.period {
-		font-size: 0.8rem;
-		color: rgba(232, 226, 212, 0.4);
-	}
-
-	.gap: 0.6rem;
+		gap: 0.6rem;
 	}
 
 	.tier-features li {
@@ -441,6 +393,22 @@
 		flex-shrink: 0;
 	}
 
+	.feature-text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.05rem;
+	}
+
+	.feat-es {
+		color: rgba(232, 226, 212, 0.7);
+	}
+
+	.feat-en {
+		font-size: 0.72rem;
+		color: rgba(232, 226, 212, 0.28);
+		font-style: italic;
+	}
+
 	.tier-cta {
 		width: 100%;
 		padding: 0.75rem;
@@ -450,17 +418,14 @@
 		color: #c4963c;
 		font-family: 'Lato', 'DM Sans', sans-serif;
 		font-size: 0.8rem;
-		font-weight-es {
-		font-size: 0.78rem;
-		line-height: 1.5;
-		color: rgba(232, 226, 212, 0.55);
-	}
-
-	.stack-label-en {
-		font-size: 0.7rem;
-		line-height: 1.4;
-		color: rgba(232, 226, 212, 0.25);
-		font-style: italic
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.1rem;
 		transition: background 0.2s, color 0.2s;
 	}
 
@@ -476,6 +441,14 @@
 
 	.tier-cta.cta-accent:hover {
 		background: #d4a64c;
+	}
+
+	.cta-en {
+		font-size: 0.65rem;
+		font-weight: 400;
+		letter-spacing: 0.04em;
+		opacity: 0.45;
+		text-transform: none;
 	}
 
 	.guarantee {
@@ -494,10 +467,18 @@
 		margin: 0 0 0.75rem;
 	}
 
-	.guarantee p {
+	.guarantee-es {
 		font-size: 0.92rem;
 		line-height: 1.7;
-		color: rgba(232, 226, 212, 0.55);
+		color: rgba(232, 226, 212, 0.65);
+		margin: 0 0 0.4rem;
+	}
+
+	.guarantee-en {
+		font-size: 0.8rem;
+		line-height: 1.6;
+		color: rgba(232, 226, 212, 0.3);
+		font-style: italic;
 		margin: 0;
 	}
 
@@ -541,9 +522,16 @@
 		color: #c4963c;
 	}
 
-	.stack-label {
+	.stack-label-es {
 		font-size: 0.78rem;
 		line-height: 1.5;
-		color: rgba(232, 226, 212, 0.45);
+		color: rgba(232, 226, 212, 0.55);
+	}
+
+	.stack-label-en {
+		font-size: 0.7rem;
+		line-height: 1.4;
+		color: rgba(232, 226, 212, 0.25);
+		font-style: italic;
 	}
 </style>

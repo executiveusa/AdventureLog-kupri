@@ -78,13 +78,10 @@ export const themeHook: Handle = async ({ event, resolve }) => {
 	return await resolve(event);
 };
 
-// hook to get the langauge cookie and set the locale
+// hook to get the language cookie and set the locale — defaults to es (Mexican Spanish)
 export const i18nHook: Handle = async ({ event, resolve }) => {
-	let locale = event.cookies.get('locale');
-	if (!locale) {
-		return await resolve(event);
-	}
-	event.locals.locale = locale; // Store the locale in locals
+	let locale = event.cookies.get('locale') || 'es';
+	event.locals.locale = locale;
 	return await resolve(event);
 };
 

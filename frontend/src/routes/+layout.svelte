@@ -49,10 +49,8 @@
 
 	if (browser) {
 		init({
-			fallbackLocale: locales.includes(navigator.language.split('-')[0])
-				? navigator.language.split('-')[0]
-				: 'en',
-			initialLocale: data.locale
+			fallbackLocale: 'es',
+			initialLocale: data.locale || 'es'
 		});
 		// get the locale cookie if it exists and set it as the initial locale if it exists
 		const localeCookie = document.cookie
@@ -85,10 +83,10 @@
 <UmamiAnalyticsEnv />
 
 <svelte:head>
-	<title>Querencia™ — Sacred Travel Experiences</title>
+	<title>Querencia™ — Experiencias de Viaje Sagradas</title>
 	<meta
 		name="description"
-		content="Querencia™ — Curated eco-luxury travel experiences across Latin America. Built in Mexico by Kupuri Media™."
+		content="Querencia™ — Experiencias eco-luxury curadas en Latinoamérica. El lugar donde más te sientes tú mismo. Hecho en México por Kupuri Media™."
 	/>
 </svelte:head>
 

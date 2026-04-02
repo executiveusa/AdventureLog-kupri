@@ -28,30 +28,35 @@
 	});
 
 	function formatDate(d: string) {
+		return new Date(d).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+	}
+
+	function formatDateEn(d: string) {
 		return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 	}
 </script>
 
 <svelte:head>
-	<title>Blog — Querencia™</title>
-	<meta name="description" content="Insights on eco-luxury travel, conscious tourism, and Latin American hidden gems. By Kupuri Media™." />
+	<title>El Diario — Querencia™</title>
+	<meta name="description" content="Ideas sobre viaje consciente, destinos escondidos y cómo construir un turismo mejor. Por Kupuri Media™." />
 </svelte:head>
 
 <div class="blog-root">
 	<header class="blog-header">
 		<a href="/" class="back-link">← Querencia™</a>
-		<h1>The Journal</h1>
-		<p class="header-sub">Insights on conscious travel, hidden destinations, and building a better tourism economy.</p>
+		<h1>El Diario</h1>
+		<p class="header-sub-es">Ideas sobre viaje consciente, destinos ocultos y la construcción de un turismo mejor.</p>
+		<p class="header-sub-en">Insights on conscious travel, hidden destinations, and building a better tourism economy.</p>
 	</header>
 
 	<main class="blog-grid">
 		{#if loading}
 			<div class="loading-state">
 				<div class="loading-pulse"></div>
-				<p>Loading articles...</p>
+				<p>Cargando artículos…</p>
 			</div>
 		{:else if posts.length === 0}
-			<p class="empty-state">No articles yet. Check back soon.</p>
+			<p class="empty-state">Aún no hay artículos. Vuelve pronto.</p>
 		{:else}
 			{#each posts as post, i}
 				<a href="/blog/{post.slug}" class="post-card" class:featured={i === 0}>
@@ -59,10 +64,11 @@
 					<div class="post-content">
 						<div class="post-meta">
 							<span class="post-date">{formatDate(post.date)}</span>
-							<span class="post-read">{post.readTime} min read</span>
+							<span class="post-read">{post.readTime} min de lectura</span>
 						</div>
-						<h2>{post.title}</h2>
-						<p class="post-excerpt">{post.excerpt}</p>
+						<h2>{post.title_es || post.title}</h2>
+						<p class="post-title-en">{post.title}</p>
+						<p class="post-excerpt">{post.excerpt_es || post.excerpt}</p>
 						<div class="post-tags">
 							{#each post.tags.slice(0, 3) as tag}
 								<span class="tag">{tag}</span>
@@ -177,13 +183,55 @@
 		margin-bottom: 0.75rem;
 	}
 
+	.blog-header h1 {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: clamp(2.2rem, 5vw, 3.5rem);
+		font-weight: 700;
+		margin: 1.5rem 0 0.75rem;
+		color: #e8e2d4;
+	}
+
+	.header-sub-es {
+		font-size: 1rem;
+		color: rgba(232, 226, 212, 0.65);
+		max-width: 46rem;
+		line-height: 1.6;
+		margin: 0 0 0.3rem;
+	}
+
+	.header-sub-en {
+		font-size: 0.82rem;
+		color: rgba(232, 226, 212, 0.28);
+		font-style: italic;
+		max-width: 46rem;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	/* keep old class for safety */
+	.header-sub {
+		font-size: 1rem;
+		color: rgba(232, 226, 212, 0.55);
+		max-width: 46rem;
+		line-height: 1.6;
+		margin: 0;
+	}
+
 	.post-content h2 {
 		font-family: 'Playfair Display', Georgia, serif;
 		font-size: 1.3rem;
 		font-weight: 700;
-		margin: 0 0 0.5rem;
+		margin: 0 0 0.2rem;
 		line-height: 1.3;
 		color: #e8e2d4;
+	}
+
+	.post-title-en {
+		font-size: 0.75rem;
+		color: rgba(232, 226, 212, 0.28);
+		font-style: italic;
+		margin: 0 0 0.6rem;
+		line-height: 1.4;
 	}
 
 	.post-excerpt {

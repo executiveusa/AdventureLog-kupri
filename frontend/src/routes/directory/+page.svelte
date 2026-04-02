@@ -53,16 +53,17 @@
 </script>
 
 <svelte:head>
-	<title>Eco-Tourism Directory — Querencia™</title>
-	<meta name="description" content="Discover vetted eco-tourism experiences across Latin America. Community-led, conservation-first." />
+	<title>Directorio Ecoturístico — Querencia™</title>
+	<meta name="description" content="Descubre experiencias ecoturísticas verificadas en toda Latinoamérica. Dirigidas por comunidades, primero la conservación." />
 </svelte:head>
 
 <div class="directory-root">
 	<header class="dir-header">
 		<a href="/" class="back-link">← Querencia™</a>
-		<p class="overline">Eco-Tourism Directory</p>
-		<h1>Places That Give Back</h1>
-		<p class="header-sub">Every listing vetted for ecological impact, community benefit, and cultural authenticity.</p>
+		<p class="overline">Directorio Ecoturístico · Eco-Tourism Directory</p>
+		<h1>Lugares Que Retribuyen</h1>
+		<p class="header-sub-es">Cada listado verificado por impacto ecológico, beneficio comunitario y autenticidad cultural.</p>
+		<p class="header-sub-en">Every listing vetted for ecological impact, community benefit, and cultural authenticity.</p>
 	</header>
 
 	<div class="controls">
@@ -80,7 +81,7 @@
 		<input
 			type="text"
 			class="search-input"
-			placeholder="Search destinations..."
+			placeholder="Buscar destinos… · Search destinations"
 			bind:value={searchQuery}
 		/>
 	</div>
@@ -89,28 +90,29 @@
 		{#if loading}
 			<div class="loading-state">
 				<div class="loading-pulse"></div>
-				<p>Loading directory...</p>
+				<p>Cargando directorio…</p>
 			</div>
 		{:else if filtered.length === 0}
-			<p class="empty-state">No listings match your search. Try a different filter.</p>
+			<p class="empty-state">Ningún resultado coincide con tu búsqueda. Prueba otro filtro. · No listings match your search.</p>
 		{:else}
 			{#each filtered as listing}
 				<div class="listing-card">
 					<div class="listing-image" style="background-image: url({listing.image})">
 						{#if listing.communityLed}
-							<span class="community-badge">Community-Led</span>
+							<span class="community-badge">Comunidad Local · Community-Led</span>
 						{/if}
 					</div>
 					<div class="listing-body">
 						<div class="listing-top">
-							<span class="listing-type">{listing.type}</span>
+							<span class="listing-type">{listing.type_es || listing.type}</span>
 							<span class="listing-price">{listing.priceRange}</span>
 						</div>
-						<h3>{listing.name}</h3>
+						<h3>{listing.name_es || listing.name}</h3>
+						<p class="listing-name-en">{listing.name_es ? listing.name : ''}</p>
 						<p class="listing-location">{listing.location}</p>
-						<p class="listing-desc">{listing.description}</p>
+						<p class="listing-desc">{listing.description_es || listing.description}</p>
 						<div class="listing-bottom">
-							<div class="eco-rating" title="Eco rating: {listing.ecoRating}/5">
+							<div class="eco-rating" title="Valoración eco: {listing.ecoRating}/5">
 								{#each Array(5) as _, i}
 									<span class="eco-dot" class:filled={i < listing.ecoRating}></span>
 								{/each}
@@ -170,11 +172,36 @@
 		line-height: 1.1;
 	}
 
+	.header-sub-es {
+		font-size: 1rem;
+		color: rgba(232, 226, 212, 0.65);
+		max-width: 36rem;
+		line-height: 1.6;
+		margin: 0 0 0.25rem;
+	}
+
+	.header-sub-en {
+		font-size: 0.8rem;
+		color: rgba(232, 226, 212, 0.28);
+		font-style: italic;
+		max-width: 36rem;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	/* keep old class for compat */
 	.header-sub {
 		font-size: 1rem;
 		color: rgba(232, 226, 212, 0.5);
 		max-width: 36rem;
 		line-height: 1.6;
+	}
+
+	.listing-name-en {
+		font-size: 0.7rem;
+		color: rgba(232, 226, 212, 0.25);
+		font-style: italic;
+		margin: 0 0 0.2rem;
 	}
 
 	.controls {

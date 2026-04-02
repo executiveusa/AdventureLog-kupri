@@ -12,7 +12,7 @@
 </script>
 
 <!-- Floating chat button -->
-<button class="chat-fab" on:click={toggle} aria-label={open ? 'Close chat' : 'Open Hermes agent'}>
+<button class="chat-fab" on:click={toggle} aria-label={open ? 'Cerrar chat' : 'Abrir agente Hermes'}>
 	{#if open}
 		<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
 			<path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -32,13 +32,14 @@
 				<span class="agent-dot"></span>
 				<span>Hermes</span>
 			</div>
-			<span class="chat-status">Coming Soon</span>
+			<span class="chat-status">Próximamente</span>
 		</div>
 		<div class="chat-body">
 			<div class="chat-placeholder">
 				<p class="placeholder-icon">🦅</p>
-				<p class="placeholder-heading">Hermes Agent</p>
-				<p class="placeholder-text">Your AI travel concierge is being trained on Latin American eco-tourism. Soon you'll plan trips, ask questions, and get real-time local insights — right here.</p>
+				<p class="placeholder-heading">Agente Hermes</p>
+				<p class="placeholder-text">Tu conserje de viajes con IA se está entrenando en ecoturismo latinoamericano. Pronto podrás planificar viajes, hacer preguntas y obtener información local en tiempo real — directamente aquí.</p>
+				<p class="placeholder-text-en">Your AI travel concierge is being trained on Latin American eco-tourism. Soon you’ll plan trips, ask questions, and get real-time local insights — right here.</p>
 				<p class="placeholder-sub">Powered by Kupuri Media™</p>
 			</div>
 		</div>
@@ -156,7 +157,15 @@
 	.placeholder-text {
 		font-size: 0.8rem;
 		line-height: 1.6;
-		color: rgba(232, 226, 212, 0.5);
+		color: rgba(232, 226, 212, 0.55);
+		margin: 0 0 0.5rem;
+	}
+
+	.placeholder-text-en {
+		font-size: 0.72rem;
+		line-height: 1.5;
+		color: rgba(232, 226, 212, 0.25);
+		font-style: italic;
 		margin: 0 0 1rem;
 	}
 

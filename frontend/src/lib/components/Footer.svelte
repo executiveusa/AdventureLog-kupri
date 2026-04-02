@@ -9,15 +9,16 @@
 			<span class="brand-sub">by Kupuri Media™</span>
 		</div>
 
-		<nav class="footer-links" aria-label="Footer navigation">
-			<a href="/blog">Blog</a>
-			<a href="/pricing">Pricing</a>
-			<a href="/directory">Directory</a>
-		</nav>
+	<nav class="footer-links" aria-label="Navegación del pie de página">
+		<a href="/blog">El Diario <span class="nav-en">Journal</span></a>
+		<a href="/pricing">Precios <span class="nav-en">Pricing</span></a>
+		<a href="/directory">Directorio <span class="nav-en">Directory</span></a>
+	</nav>
 
-		<div class="footer-legal">
-			<p>© {year} Kupuri Media™ · Built in Mexico · Sociedad de Propósito Social</p>
-			<p class="footer-purpose">5% of annual profits fund reforestation & community tourism</p>
+	<div class="footer-legal">
+		<p>© {year} Kupuri Media™ · Hecho en México · Sociedad de Propósito Social</p>
+		<p class="footer-purpose">El 5% de las ganancias anuales financian reforestación y turismo comunitario</p>
+		<p class="footer-purpose-en">5% of annual profits fund reforestation &amp; community tourism</p>
 		</div>
 	</div>
 </footer>
@@ -75,6 +76,17 @@
 		color: rgba(232, 226, 212, 0.45);
 		text-decoration: none;
 		transition: color 0.2s;
+		display: flex;
+		align-items: baseline;
+		gap: 0.35rem;
+	}
+
+	.nav-en {
+		font-size: 0.62rem;
+		opacity: 0.35;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		font-style: italic;
 	}
 
 	.footer-links a:hover {
@@ -91,7 +103,14 @@
 	}
 
 	.footer-purpose {
-		color: rgba(90, 122, 82, 0.6);
+		color: rgba(90, 122, 82, 0.7);
 		margin-top: 0.25rem !important;
+	}
+
+	.footer-purpose-en {
+		color: rgba(90, 122, 82, 0.35);
+		font-size: 0.66rem;
+		font-style: italic;
+		margin-top: 0.1rem !important;
 	}
 </style>

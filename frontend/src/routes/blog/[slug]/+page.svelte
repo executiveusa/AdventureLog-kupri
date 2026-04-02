@@ -40,6 +40,10 @@
 	});
 
 	function formatDate(d: string) {
+		return new Date(d).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+	}
+
+	function formatDateEn(d: string) {
 		return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 	}
 </script>
@@ -80,11 +84,14 @@
 			<div class="article-body">
 				<div class="article-meta">
 					<span>{formatDate(post.date)}</span>
-					<span>{post.readTime} min read</span>
+					<span>{post.readTime} min de lectura</span>
 					<span>{post.author}</span>
 				</div>
 
-				<h1>{post.title}</h1>
+				<h1>{post.title_es || post.title}</h1>
+				{#if post.title_es}
+					<p class="title-en-sub">{post.title}</p>
+				{/if}
 
 				<div class="article-tags">
 					{#each post.tags as tag}
@@ -93,7 +100,7 @@
 				</div>
 
 				<div class="prose">
-					{#each post.body as block}
+					{#each (post.body_es || post.body) as block}
 						{#if block.type === 'heading'}
 							<h2>{block.text}</h2>
 						{:else}
@@ -103,8 +110,8 @@
 				</div>
 
 				<div class="article-cta">
-					<p>Ready to travel with intention?</p>
-					<a href="/pricing" class="cta-link">See Our Plans →</a>
+					<p>¿Listo para viajar con intención?</p>
+					<a href="/pricing" class="cta-link">Ver Nuestros Planes →</a>
 				</div>
 			</div>
 		</article>
@@ -174,8 +181,16 @@
 		font-size: clamp(2rem, 5vw, 3rem);
 		font-weight: 700;
 		line-height: 1.15;
-		margin: 0 0 1rem;
+		margin: 0 0 0.35rem;
 		color: #e8e2d4;
+	}
+
+	.title-en-sub {
+		font-size: 0.85rem;
+		color: rgba(232, 226, 212, 0.28);
+		font-style: italic;
+		margin: 0 0 1rem;
+		line-height: 1.4;
 	}
 
 	.article-tags {

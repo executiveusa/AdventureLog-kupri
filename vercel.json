@@ -1,7 +1,6 @@
 {
-  "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/.vercel/output",
-  "installCommand": "npm install --prefix frontend",
+  "buildCommand": "cd frontend && npm run build && cp -r .vercel/output ../.vercel/",
+  "installCommand": "cd frontend && npm install",
   "redirects": [
     {
       "source": "/birthday.html",

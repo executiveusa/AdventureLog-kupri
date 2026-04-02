@@ -33,7 +33,7 @@
 	});
 
 	function handleStepUnlock(stepNum: number, password: string) {
-		unlockedSteps.add(stepNum);
+		unlockedSteps = new Set([...unlockedSteps, stepNum]);
 		saveProgress(Array.from(unlockedSteps));
 	}
 </script>
@@ -130,6 +130,6 @@
 
 <style>
 	:global(body) {
-		@apply bg-gradient-to-br from-purple-50 via-white to-pink-50;
+		background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #fdf2f8 100%);
 	}
 </style>

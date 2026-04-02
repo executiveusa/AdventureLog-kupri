@@ -1,0 +1,121 @@
+[
+  {
+    "slug": "why-eco-travel-matters-2026",
+    "title": "Why Eco-Travel Matters More Than Ever in 2026",
+    "title_es": "Por Qué el Ecoturismo Importa Más Que Nunca en 2026",
+    "excerpt": "Mass tourism is destroying the places we love. Here's how conscious travel creates lasting change — and why Latin America leads the movement.",
+    "excerpt_es": "El turismo masivo está destruyendo los lugares que amamos. Así es como el viaje consciente crea un cambio duradero.",
+    "author": "Kupuri Editorial",
+    "date": "2026-01-15",
+    "readTime": 7,
+    "tags": ["eco-tourism", "sustainability", "latin-america"],
+    "heroImage": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&q=80",
+    "body": [
+      { "type": "paragraph", "text": "Every year, over 1.4 billion international tourist arrivals reshape coastlines, overwhelm indigenous communities, and accelerate habitat loss. The carbon footprint of global tourism represents 8% of worldwide emissions — more than the entire construction industry." },
+      { "type": "heading", "text": "The Real Cost of 'Cheap' Vacations" },
+      { "type": "paragraph", "text": "That $49/night all-inclusive resort? It pipes untreated wastewater into the ocean. The zip-line canopy tour? It clear-cut native forest for the platform. The Instagram-famous cenote? Local Maya communities receive zero revenue from the 2,000 daily visitors trampling their sacred site." },
+      { "type": "paragraph", "text": "This is not sustainable. This is extraction dressed as experience." },
+      { "type": "heading", "text": "Latin America: Where the Solution Grows" },
+      { "type": "paragraph", "text": "Mexico, Colombia, Costa Rica, and Ecuador hold 15% of the world's biodiversity. Indigenous communities across the region have protected these ecosystems for millennia. The emerging model of community-led eco-tourism puts revenue directly into conservation — and it works." },
+      { "type": "paragraph", "text": "In Oaxaca, community-managed forests generate more income than logging ever did. In Colombia's Coffee Triangle, family farms now earn 3x more from curated visitor experiences than from coffee exports alone." },
+      { "type": "heading", "text": "What Querencia Does Differently" },
+      { "type": "paragraph", "text": "We don't list hotels. We curate relationships. Every experience on Querencia is vetted for ecological impact, community benefit, and cultural authenticity. Our AI-powered matching connects travelers with experiences that align with their values — not just their budget." },
+      { "type": "paragraph", "text": "5% of all Querencia revenue funds reforestation and community tourism infrastructure. Because the places we love deserve more than a like." }
+    ]
+  },
+  {
+    "slug": "hidden-mexico-beyond-cancun",
+    "title": "Hidden Mexico: 7 Destinations That Will Change How You Travel",
+    "title_es": "México Oculto: 7 Destinos Que Cambiarán Tu Forma de Viajar",
+    "excerpt": "Forget Cancún. These seven under-the-radar Mexican destinations offer transformative experiences without the tourist crowds.",
+    "excerpt_es": "Olvida Cancún. Estos siete destinos mexicanos poco conocidos ofrecen experiencias transformadoras sin las multitudes turísticas.",
+    "author": "Kupuri Editorial",
+    "date": "2026-01-22",
+    "readTime": 9,
+    "tags": ["mexico", "destinations", "hidden-gems"],
+    "heroImage": "https://images.unsplash.com/photo-1570737209810-87a8e7245f88?w=1200&q=80",
+    "body": [
+      { "type": "paragraph", "text": "Mexico receives 45 million international visitors annually. Nearly 80% of them go to the same five destinations: Cancún, Los Cabos, Puerto Vallarta, Mexico City, and Playa del Carmen. The other 20% discover a different country entirely." },
+      { "type": "heading", "text": "1. Hierve el Agua, Oaxaca" },
+      { "type": "paragraph", "text": "Petrified waterfalls cascade over cliff edges 50 meters above the valley floor. Natural infinity pools — formed over millennia by mineral-rich springs — let you swim at the edge of the world. The Zapotec community that manages the site limits daily visitors to preserve the formation." },
+      { "type": "heading", "text": "2. Bacalar, Quintana Roo" },
+      { "type": "paragraph", "text": "The 'Lagoon of Seven Colors' stretches 42 kilometers of crystalline freshwater in shades from turquoise to sapphire. Stromatolites — living fossils 3.5 billion years in the making — line its western shore. Unlike Tulum's overcrowded coastline 3 hours north, Bacalar still feels like a secret." },
+      { "type": "heading", "text": "3. San Sebastián del Oeste, Jalisco" },
+      { "type": "paragraph", "text": "This former silver mining town, population 600, sits frozen in the 18th century. Cobblestone streets wind past adobe buildings with hand-carved wooden balconies. The surrounding Sierra Madre cloud forest harbors jaguars, military macaws, and orchids found nowhere else on earth." },
+      { "type": "heading", "text": "4. Cuatro Ciénegas, Coahuila" },
+      { "type": "paragraph", "text": "A desert oasis harboring species found only here — endemic fish, turtles, and microorganisms that NASA studies as analogs for life on Mars. The turquoise pools surrounded by white gypsum dunes look otherworldly because, in a biological sense, they are." },
+      { "type": "heading", "text": "5. Tepoztlán, Morelos" },
+      { "type": "paragraph", "text": "A Pueblo Mágico nestled beneath dramatic cliff formations. The Tepozteco pyramid perched 400 meters above town offers panoramic views of the Valley of Tepoztlán. The Sunday market sells tlacoyos, elotes, and organic mezcal from local producers." },
+      { "type": "heading", "text": "6. Mineral de Pozos, Guanajuato" },
+      { "type": "paragraph", "text": "An abandoned mining ghost town reborn as an arts colony. Crumbling haciendas house galleries, mezcalerías, and boutique hotels. The annual music festival draws artists from across Mexico to perform in the ruins of 19th-century ore-processing plants." },
+      { "type": "heading", "text": "7. Isla Holbox, Quintana Roo" },
+      { "type": "paragraph", "text": "No cars. No paved roads. Bioluminescent waters light up the beach at night. Whale sharks patrol the northern coast from June to September. Holbox represents what the entire Riviera Maya looked like 30 years ago — and what conscious conservation can preserve." }
+    ]
+  },
+  {
+    "slug": "ai-travel-planning-vs-traditional-agents",
+    "title": "AI Travel Planning vs. Traditional Agents: What Actually Works",
+    "title_es": "Planificación de Viajes con IA vs. Agentes Tradicionales: Qué Funciona Realmente",
+    "excerpt": "We tested 6 AI trip planners against a human travel agent. The results reveal what technology gets right — and what it still gets dangerously wrong.",
+    "excerpt_es": "Probamos 6 planificadores de viajes con IA contra un agente humano. Los resultados revelan qué acierta la tecnología y qué sigue fallando.",
+    "author": "Kupuri Editorial",
+    "date": "2026-02-05",
+    "readTime": 11,
+    "tags": ["ai", "travel-planning", "technology"],
+    "heroImage": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&q=80",
+    "body": [
+      { "type": "paragraph", "text": "ChatGPT can plan your trip in 30 seconds. But should it? We put six popular AI travel planners through a rigorous test: plan a 10-day eco-conscious trip through southern Mexico for two travelers with specific dietary restrictions and a $5,000 budget." },
+      { "type": "heading", "text": "What AI Gets Right" },
+      { "type": "paragraph", "text": "Speed and breadth. Every AI tool produced coherent itineraries within minutes, covering logistics that would take a human agent hours to research. Route optimization, budget allocation, and alternative suggestions were genuinely useful." },
+      { "type": "heading", "text": "What AI Gets Dangerously Wrong" },
+      { "type": "paragraph", "text": "Every single AI tool recommended at least two destinations that were temporarily closed, one restaurant that no longer exists, and activities with prices 30-60% lower than reality. None flagged seasonal considerations like rainy season road closures or jellyfish migration patterns." },
+      { "type": "paragraph", "text": "Worse: the AI tools confidently presented these hallucinations as facts, complete with fake TripAdvisor ratings and invented opening hours." },
+      { "type": "heading", "text": "The Hybrid Approach That Works" },
+      { "type": "paragraph", "text": "The winning formula isn't AI or humans — it's AI verified by local expertise. This is exactly what Querencia builds: autonomous agents that draft itineraries, vetted by our network of local guides and community partners who know what's actually open, actually safe, and actually worth your time." },
+      { "type": "paragraph", "text": "The result: AI speed with human judgment. Plans you can trust because someone on the ground confirmed every detail." }
+    ]
+  },
+  {
+    "slug": "mexico-social-purpose-company",
+    "title": "Why We Built a Social Purpose Company in Mexico",
+    "title_es": "Por Qué Construimos una Empresa de Propósito Social en México",
+    "excerpt": "Most travel startups incorporate in Delaware for tax benefits. We chose Mexico City — and a legal structure that mandates giving back.",
+    "excerpt_es": "La mayoría de las startups de viajes se incorporan en Delaware. Nosotros elegimos la Ciudad de México y una estructura legal que exige retribuir.",
+    "author": "Kupuri Editorial",
+    "date": "2026-02-12",
+    "readTime": 6,
+    "tags": ["company", "mexico", "social-purpose", "transparency"],
+    "heroImage": "https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=1200&q=80",
+    "body": [
+      { "type": "paragraph", "text": "In 2024, Mexico introduced the Sociedad de Propósito Social (S.P.S.) — a corporate structure that legally binds companies to allocate a minimum percentage of profits toward their declared social mission. It's similar to a B Corp, but with teeth." },
+      { "type": "heading", "text": "What This Means in Practice" },
+      { "type": "paragraph", "text": "Kupuri Media™ S.A.S. de P.S. is legally required to direct 5% of annual net profits toward reforestation, support for local guide cooperatives, and community tourism infrastructure in the regions where we operate. This isn't a marketing pledge — it's in our charter." },
+      { "type": "heading", "text": "Why Mexico, Not Delaware" },
+      { "type": "paragraph", "text": "Our team, our experiences, and our community partners are in Mexico. Incorporating here means our profits stay in the ecosystem that creates them. Mexican corporate law for S.P.S. entities provides tax incentives for social impact spending — the system is designed to reward companies that build, not extract." },
+      { "type": "heading", "text": "Transparency as a Feature" },
+      { "type": "paragraph", "text": "Every quarter, we publish exactly how our social purpose funds are allocated. Which communities received investment. Which reforestation projects were funded. Which local guides were trained. Because accountability isn't a report — it's a relationship." }
+    ]
+  },
+  {
+    "slug": "building-travel-experiences-that-last",
+    "title": "The Psychology of Travel: Why Most Trips Feel Empty After",
+    "title_es": "La Psicología del Viaje: Por Qué la Mayoría de los Viajes Se Sienten Vacíos Después",
+    "excerpt": "Hedonic adaptation explains why your last vacation already feels like it happened to someone else. Transformative travel design changes the equation.",
+    "excerpt_es": "La adaptación hedónica explica por qué tu última vacación ya se siente como si le hubiera pasado a otra persona.",
+    "author": "Kupuri Editorial",
+    "date": "2026-02-20",
+    "readTime": 8,
+    "tags": ["psychology", "travel-design", "experiences"],
+    "heroImage": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",
+    "body": [
+      { "type": "paragraph", "text": "Research from Cornell University shows that experiential purchases produce more lasting happiness than material ones. But not all experiences are created equal. Most vacations follow a predictable arc: anticipation spike, brief peak experience, rapid hedonic adaptation, and the 'was that it?' deflation within 72 hours of returning home." },
+      { "type": "heading", "text": "The Problem Is Design, Not Destination" },
+      { "type": "paragraph", "text": "The average resort vacation is engineered for consumption, not connection. Buffets, poolside lounging, and organized excursions create comfort but rarely generate the novel, challenging, or meaningful experiences that form lasting memories." },
+      { "type": "paragraph", "text": "Neuroscience tells us that memories consolidate most strongly during states of moderate arousal — not relaxation. Novelty, surprise, and emotional engagement are the raw materials of memory formation." },
+      { "type": "heading", "text": "Designing for Transformation" },
+      { "type": "paragraph", "text": "Querencia draws on principles from experience design and positive psychology. Every curated journey includes: (1) Novelty anchors — moments of genuine surprise that break routine, (2) Effort gates — experiences that require participation, not just observation, (3) Community intersection — meaningful contact with local people, and (4) Reflection prompts — structured moments to internalize the experience." },
+      { "type": "heading", "text": "Why We Use the Treasure Hunt Model" },
+      { "type": "paragraph", "text": "Our password-gated step-by-step reveal format isn't a gimmick. It leverages the Zeigarnik Effect — the psychological tendency to remember incomplete tasks better than completed ones. Each locked step creates anticipation. Each reveal triggers a dopamine response. The journey itself becomes as memorable as the destination." }
+    ]
+  }
+]

@@ -66,6 +66,7 @@
 
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Toast from '$lib/components/Toast.svelte';
+	import ChatWindow from '$lib/components/ChatWindow.svelte';
 	import 'tailwindcss/tailwind.css';
 
 	// Create a promise that resolves when the locale is ready
@@ -78,15 +79,16 @@
 	<Navbar {data} />
 	<Toast />
 	<slot />
+	<ChatWindow />
 {/await}
 
 <UmamiAnalyticsEnv />
 
 <svelte:head>
-	<title>AdventureLog</title>
+	<title>Querencia™ — Sacred Travel Experiences</title>
 	<meta
 		name="description"
-		content="Embark, explore, remember with AdventureLog. AdventureLog is the ultimate travel companion."
+		content="Querencia™ — Curated eco-luxury travel experiences across Latin America. Built in Mexico by Kupuri Media™."
 	/>
 </svelte:head>
 

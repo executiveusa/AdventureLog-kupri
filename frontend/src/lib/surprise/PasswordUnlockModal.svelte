@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import { playSuccess, playError, playClick } from '$lib/utils/sound';
+	import { hapticSuccess, hapticError, hapticTap } from '$lib/utils/haptic';
 
 	export let isOpen = false;
 	export let stepNumber = 1;
@@ -15,6 +17,8 @@
 	function handleSubmit() {
 		attempts++;
 		if (input.toUpperCase() === correctPassword.toUpperCase()) {
+			playSuccess();
+			hapticSuccess();
 			dispatch('unlocked');
 			input = '';
 			isWrong = false;
@@ -22,36 +26,54 @@
 		} else {
 			isWrong = true;
 			input = '';
+			playError();
+			hapticError();
 			setTimeout(() => (isWrong = false), 500);
 		}
 	}
 
 	function handleClose() {
+		playClick();
+		hapticTap();
 		input = '';
 		isWrong = false;
 		dispatch('close');
 	}
+
+	function handleBackdropKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape') handleClose();
+	}
 </script>
 
 {#if isOpen}
+	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<div
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="modal-title-{stepNumber}"
 		class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
 		on:click={handleClose}
+		on:keydown={handleBackdropKeydown}
 	>
+		<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 		<div
+			role="document"
 			class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl"
 			on:click|stopPropagation
+			on:keydown|stopPropagation
 			transition:fly={{ y: 20 }}
 		>
 			<div class="text-center">
-				<div class="text-5xl mb-4">🔐</div>
-				<h2 class="text-xl font-bold mb-2 text-gray-800">Unlock Step {stepNumber}</h2>
+				<div class="text-5xl mb-4" aria-hidden="true">🔐</div>
+				<h2 id="modal-title-{stepNumber}" class="text-xl font-bold mb-2 text-gray-800">Unlock Step {stepNumber}</h2>
 				<p class="text-sm text-gray-600 mb-6">Enter the password to reveal this surprise</p>
 			</div>
 
 			<form on:submit|preventDefault={handleSubmit} class="space-y-4">
 				<div>
+					<label for="password-input-{stepNumber}" class="sr-only">Password for step {stepNumber}</label>
 					<input
+						id="password-input-{stepNumber}"
 						type="password"
 						bind:value={input}
 						placeholder="Enter password..."
@@ -59,9 +81,10 @@
 							isWrong ? 'border-red-500 bg-red-50 shake' : 'border-gray-300 focus:border-blue-500'
 						}`}
 						autocomplete="off"
+						aria-describedby={isWrong ? `error-${stepNumber}` : undefined}
 					/>
 					{#if isWrong}
-						<p class="text-red-500 text-sm mt-2 text-center font-semibold">
+						<p id="error-{stepNumber}" class="text-red-500 text-sm mt-2 text-center font-semibold" role="alert">
 							❌ Wrong password (Attempt {attempts})
 						</p>
 					{/if}

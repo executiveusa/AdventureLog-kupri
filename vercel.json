@@ -1,5 +1,23 @@
 {
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/.vercel/output",
-  "installCommand": "npm install --prefix frontend"
+  "installCommand": "npm install --prefix frontend",
+  "redirects": [
+    {
+      "source": "/birthday.html",
+      "destination": "/surprise/birthday",
+      "permanent": true
+    },
+    {
+      "source": "/birthday",
+      "destination": "/surprise/birthday",
+      "permanent": true
+    },
+    {
+      "source": "/surprise/yvette-cuernavaca",
+      "destination": "/surprise/experience/cuernavaca-sacred",
+      "permanent": true
+    }
+  ]
 }
+

@@ -114,6 +114,7 @@
 		{ path: '/collections', icon: FormatListBulletedSquare, label: 'navbar.collections' },
 		{ path: '/worldtravel', icon: Earth, label: 'navbar.worldtravel' },
 		{ path: '/map', icon: Map, label: 'navbar.map' },
+		{ path: '/globe', icon: Earth, label: 'navbar.globe' },
 		{ path: '/calendar', icon: Calendar, label: 'navbar.calendar' },
 		{ path: '/users', icon: AccountMultiple, label: 'navbar.users' }
 	];

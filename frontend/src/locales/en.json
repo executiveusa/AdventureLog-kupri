@@ -2,6 +2,7 @@
 	"navbar": {
 		"collections": "Collections",
 		"map": "Map",
+		"globe": "Globe",
 		"users": "Users",
 		"search": "Search",
 		"profile": "Profile",

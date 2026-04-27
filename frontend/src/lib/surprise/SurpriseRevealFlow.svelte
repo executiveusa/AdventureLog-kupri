@@ -5,6 +5,10 @@
 	import useSurpriseProgress from './useSurpriseProgress';
 	import type { Step } from './types';
 
+	export let slug = 'cuernavaca-sacred';
+	export let experienceTitle = '';
+	export let experienceSubtitle = '';
+
 	let steps: Step[] = [];
 	let viewedSteps: Set<number> = new Set();
 	let loading = true;
@@ -17,7 +21,7 @@
 
 	onMount(async () => {
 		try {
-			const response = await fetch('/surprise/itinerary/yvette-cuernavaca.json');
+			const response = await fetch(`/surprise/itinerary/${encodeURIComponent(slug)}.json`);
 			if (!response.ok) throw new Error('Failed to load itinerary');
 			steps = await response.json();
 
@@ -42,8 +46,8 @@
 	<!-- Header -->
 	<div class="sticky top-0 z-40 bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg">
 		<div class="max-w-6xl mx-auto px-4 py-6 text-center">
-			<h1 class="text-4xl font-black mb-2">✨ Sorpresa en Cuernavaca ✨</h1>
-			<p class="text-purple-100">A treasure hunt created especially for {recipientName}</p>
+			<h1 class="text-4xl font-black mb-2">{experienceTitle || '✨ Sorpresa en Cuernavaca ✨'}</h1>
+			<p class="text-purple-100">{experienceSubtitle || `A treasure hunt created especially for ${recipientName}`}</p>
 		</div>
 	</div>
 
@@ -105,8 +109,8 @@
 				>
 					<div class="text-6xl mb-4 animate-bounce">🎊</div>
 					<h2 class="text-3xl font-black text-yellow-800 mb-2">¡Lo hicimos! We Did It!</h2>
-					<p class="text-yellow-700 text-lg">
-						You've discovered all the surprises! Get ready for an unforgettable adventure in Cuernavaca!
+					<p class="text-yellow-700 text-lg mb-4">
+						All surprises have been revealed. Get ready for an unforgettable adventure!
 						🚀
 					</p>
 				</div>
@@ -117,12 +121,12 @@
 	<!-- Footer -->
 	<div class="bg-gradient-to-r from-purple-900 to-pink-900 text-white text-center py-8 mt-12">
 		<p class="text-sm">Made with 💜 by Kupuri Studios</p>
-		<p class="text-xs text-purple-300 mt-2">For Yvette's Cuernavaca Adventure</p>
+		<p class="text-xs text-purple-300 mt-2">Querencia™ by Kupuri Media™</p>
 	</div>
 </div>
 
 <style>
 	:global(body) {
-		@apply bg-gradient-to-br from-purple-50 via-white to-pink-50;
+		background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #fdf2f8 100%);
 	}
 </style>

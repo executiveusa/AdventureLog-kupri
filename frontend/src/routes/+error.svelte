@@ -3,74 +3,125 @@
 	import { page } from '$app/stores';
 	import Lost from '$lib/assets/undraw_lost.svg';
 	import ServerError from '$lib/assets/undraw_server_error.svg';
+	import { playClick } from '$lib/utils/sound';
+	import { hapticTap } from '$lib/utils/haptic';
+
+	function goHome() {
+		playClick();
+		hapticTap();
+		goto('/');
+	}
+
+	const is404 = $page.status === 404;
+	const isLoginRoute = $page.url.pathname === '/login' || $page.url.pathname === '/signup';
 </script>
 
-{#if $page.status === 404}
-	<div
-		class="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8"
-	>
-		<div class="mx-auto max-w-md text-center">
-			<img src={Lost} alt="Lost in the forest" />
-			<h1 class="text-center text-5xl font-extrabold mt-2">
-				{$page.status}: {$page.error?.message}
-			</h1>
-			<h1 class="mt-4 text-xl font-bold tracking-tight text-foreground">
-				Oops, looks like you've wandered off the beaten path.
-			</h1>
-
-			<p class="mt-4 text-muted-foreground">We couldn't find the page you were looking for.</p>
-			<div class="mt-6 flex flex-col items-center gap-4 sm:flex-row">
-				<button class="btn btn-neutral" on:click={() => goto('/')}>Go to Homepage</button>
-			</div>
-		</div>
-	</div>
-{/if}
-
-{#if $page.status === 500}
-	<div
-		class="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8"
-	>
-		<div class="mx-auto max-w-md text-center">
-			<img src={ServerError} alt="Lost in the forest" />
-			<h1 class="text-center text-5xl font-extrabold mt-2">
-				{$page.status}: {$page.error?.message}
-			</h1>
-			<h1 class="mt-4 text-xl font-bold tracking-tight text-foreground">
-				Oops, looks like something went wrong.
-			</h1>
-
-			<p class="mt-4">
-				AdventureLog server encountered an error while processing your request.
-				<br />
-				Please check the server logs for more information.
+<div class="error-page">
+	<div class="error-inner">
+		{#if is404}
+			<img src={Lost} alt="" aria-hidden="true" class="error-img" />
+			<p class="error-code">404</p>
+			<h1 class="error-heading">You've wandered off the path.</h1>
+			<p class="error-body">The trail you followed doesn't exist — but there are many others worth exploring.</p>
+		{:else}
+			<img src={ServerError} alt="" aria-hidden="true" class="error-img" />
+			<p class="error-code">{$page.status}</p>
+			<h1 class="error-heading">Something went wrong in the jungle.</h1>
+			<p class="error-body">
+				The server encountered an error. If this keeps happening, check the
+				<a href="https://adventurelog.app" target="_blank" rel="noopener noreferrer" class="error-link">AdventureLog docs</a>.
 			</p>
-
-			<div class="alert alert-warning mt-4">
-				<p class="text-muted-foreground">
-					<strong>Administrators:</strong> Please check your setup using the
-					<a class="link link-primary" target="_blank" href="https://adventurelog.app"
-						>documentation</a
-					>.
+			{#if isLoginRoute}
+				<p class="error-hint">
+					💡 If you're trying to log in, this may mean the backend server isn't running yet.
 				</p>
-			</div>
-
-			<!-- If the route is /login give a hint as an alert -->
-			{#if $page.url.pathname === '/login' || $page.url.pathname === '/signup'}
-				<div class="alert alert-info mt-4">
-					<p
-						class="text-muted
-						-foreground"
-					>
-						<strong>Hint:</strong> If you are an administrator, please check your PUBLIC_SERVER_URL
-						in the frontend config to make sure it can reach the backend.
-						<br />
-					</p>
-				</div>
 			{/if}
+		{/if}
 
-			<div class="mt-6 flex flex-col items-center gap-4 sm:flex-row">
-				<button class="btn btn-neutral" on:click={() => goto('/')}>Go to Homepage</button>
-			</div>
-		</div>
+		<button class="error-btn" on:click={goHome}>
+			Return to Querencia
+			<span aria-hidden="true"> →</span>
+		</button>
 	</div>
-{/if}
+</div>
+
+<style>
+	.error-page {
+		min-height: 100dvh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #0c0d0a;
+		font-family: 'Lato', 'Helvetica Neue', sans-serif;
+		padding: 2rem 1.5rem;
+		color: #e8e2d4;
+	}
+	.error-inner {
+		max-width: 480px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+	.error-img {
+		width: 180px;
+		height: auto;
+		opacity: 0.55;
+		filter: sepia(0.3) hue-rotate(20deg);
+	}
+	.error-code {
+		font-family: 'DM Mono', monospace;
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		color: #c4963c;
+		text-transform: uppercase;
+		margin: 0;
+	}
+	.error-heading {
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: clamp(1.6rem, 5vw, 2.4rem);
+		font-weight: 700;
+		margin: 0;
+		line-height: 1.2;
+		color: #e8e2d4;
+	}
+	.error-body {
+		font-size: 0.9rem;
+		color: #a09880;
+		line-height: 1.7;
+		margin: 0;
+	}
+	.error-link {
+		color: #c4963c;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.error-hint {
+		font-size: 0.8rem;
+		color: #5a5448;
+		background: rgba(196,150,60,0.06);
+		border: 1px solid rgba(196,150,60,0.15);
+		padding: 0.75rem 1rem;
+		border-radius: 6px;
+		margin: 0;
+	}
+	.error-btn {
+		margin-top: 0.5rem;
+		padding: 0.75rem 2rem;
+		background: transparent;
+		border: 1px solid rgba(196,150,60,0.4);
+		color: #c4963c;
+		font-family: 'DM Mono', monospace;
+		font-size: 0.8rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background 0.2s, border-color 0.2s;
+		border-radius: 2px;
+	}
+	.error-btn:hover {
+		background: rgba(196,150,60,0.08);
+		border-color: rgba(196,150,60,0.7);
+	}
+</style>

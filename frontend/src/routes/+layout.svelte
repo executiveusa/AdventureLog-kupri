@@ -49,10 +49,8 @@
 
 	if (browser) {
 		init({
-			fallbackLocale: locales.includes(navigator.language.split('-')[0])
-				? navigator.language.split('-')[0]
-				: 'en',
-			initialLocale: data.locale
+			fallbackLocale: 'es',
+			initialLocale: data.locale || 'es'
 		});
 		// get the locale cookie if it exists and set it as the initial locale if it exists
 		const localeCookie = document.cookie
@@ -66,6 +64,7 @@
 
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Toast from '$lib/components/Toast.svelte';
+	import ChatWindow from '$lib/components/ChatWindow.svelte';
 	import 'tailwindcss/tailwind.css';
 
 	// Create a promise that resolves when the locale is ready
@@ -78,15 +77,16 @@
 	<Navbar {data} />
 	<Toast />
 	<slot />
+	<ChatWindow />
 {/await}
 
 <UmamiAnalyticsEnv />
 
 <svelte:head>
-	<title>AdventureLog</title>
+	<title>Querencia™ — Experiencias de Viaje Sagradas</title>
 	<meta
 		name="description"
-		content="Embark, explore, remember with AdventureLog. AdventureLog is the ultimate travel companion."
+		content="Querencia™ — Experiencias eco-luxury curadas en Latinoamérica. El lugar donde más te sientes tú mismo. Hecho en México por Kupuri Media™."
 	/>
 </svelte:head>
 

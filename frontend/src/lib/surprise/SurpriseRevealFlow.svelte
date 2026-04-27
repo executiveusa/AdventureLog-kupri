@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import StepCard from './StepCard.svelte';
 	import useSurpriseProgress from './useSurpriseProgress';
 	import type { Step } from './types';
@@ -9,11 +10,14 @@
 	export let experienceSubtitle = '';
 
 	let steps: Step[] = [];
-	let unlockedSteps: Set<number> = new Set();
+	let viewedSteps: Set<number> = new Set();
 	let loading = true;
 	let error: string | null = null;
 
 	const { getProgress, saveProgress } = useSurpriseProgress();
+
+	// Get personalization from URL parameters
+	$: recipientName = $page.url.searchParams.get('for') || $page.url.searchParams.get('invite') || 'Yvette';
 
 	onMount(async () => {
 		try {
@@ -21,9 +25,9 @@
 			if (!response.ok) throw new Error('Failed to load itinerary');
 			steps = await response.json();
 
-			// Load previously unlocked steps
+			// Load previously viewed steps
 			const savedProgress = getProgress();
-			unlockedSteps = new Set(savedProgress);
+			viewedSteps = new Set(savedProgress);
 
 			loading = false;
 		} catch (err) {
@@ -32,9 +36,9 @@
 		}
 	});
 
-	function handleStepUnlock(stepNum: number, password: string) {
-		unlockedSteps = new Set([...unlockedSteps, stepNum]);
-		saveProgress(Array.from(unlockedSteps));
+	function handleStepView(stepNum: number) {
+		viewedSteps = new Set([...viewedSteps, stepNum]);
+		saveProgress(Array.from(viewedSteps));
 	}
 </script>
 
@@ -42,8 +46,8 @@
 	<!-- Header -->
 	<div class="sticky top-0 z-40 bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg">
 		<div class="max-w-6xl mx-auto px-4 py-6 text-center">
-			<h1 class="text-4xl font-black mb-2">{experienceTitle || '✨ Sacred Experience ✨'}</h1>
-			<p class="text-purple-100">{experienceSubtitle || 'A treasure hunt of discovery'}</p>
+			<h1 class="text-4xl font-black mb-2">{experienceTitle || '✨ Sorpresa en Cuernavaca ✨'}</h1>
+			<p class="text-purple-100">{experienceSubtitle || `A treasure hunt created especially for ${recipientName}`}</p>
 		</div>
 	</div>
 
@@ -51,13 +55,13 @@
 	<div class="bg-gradient-to-r from-purple-100 to-pink-100 border-b border-purple-200">
 		<div class="max-w-6xl mx-auto px-4 py-4">
 			<div class="flex items-center justify-between text-sm font-semibold mb-2">
-				<span class="text-gray-700">Your Progress:</span>
-				<span class="text-purple-600">{unlockedSteps.size} of {steps.length} Unlocked</span>
+				<span class="text-gray-700">Your Journey:</span>
+				<span class="text-purple-600">{viewedSteps.size} of {steps.length} Discovered</span>
 			</div>
 			<div class="w-full bg-white rounded-full h-3 shadow-inner overflow-hidden">
 				<div
 					class="bg-gradient-to-r from-purple-500 to-pink-500 h-full transition-all duration-300"
-					style="width: {steps.length > 0 ? (unlockedSteps.size / steps.length) * 100 : 0}%;"
+					style="width: {steps.length > 0 ? (viewedSteps.size / steps.length) * 100 : 0}%;"
 				/>
 			</div>
 		</div>
@@ -92,15 +96,14 @@
 						googleMapsUrl={step.googleMapsUrl}
 						photo={step.photo}
 						photoBlur={step.photoBlur}
-						password={step.password}
-						isUnlocked={unlockedSteps.has(step.step)}
-						onUnlock={(password) => handleStepUnlock(step.step, password)}
+						isViewed={viewedSteps.has(step.step)}
+						onView={() => handleStepView(step.step)}
 					/>
 				{/each}
 			</div>
 
 			<!-- Completion Message -->
-			{#if unlockedSteps.size === steps.length}
+			{#if viewedSteps.size === steps.length && steps.length > 0}
 				<div
 					class="mt-12 bg-gradient-to-r from-yellow-100 to-orange-100 border-2 border-yellow-400 rounded-2xl p-8 text-center shadow-xl"
 				>
@@ -110,12 +113,6 @@
 						All surprises have been revealed. Get ready for an unforgettable adventure!
 						🚀
 					</p>
-					<a
-						href="/"
-						class="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold px-8 py-3 rounded-lg hover:shadow-lg transition-all"
-					>
-						Back to Home
-					</a>
 				</div>
 			{/if}
 		{/if}

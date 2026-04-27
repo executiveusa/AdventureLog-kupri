@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Cuernavaca Adventure</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+        /* Invitation Page */
+        .invitation-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #dbeafe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .invitation-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+        }
+        .gift-icon { font-size: 80px; margin-bottom: 20px; }
+        .invitation-title {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .invitation-subtitle { font-size: 28px; color: #374151; margin-bottom: 30px; font-weight: 600; }
+        .invitation-text { font-size: 18px; color: #6b7280; line-height: 1.6; margin-bottom: 15px; }
+        .start-btn {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            transition: all 0.3s;
+        }
+        .start-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4); }
+        .decorations { font-size: 36px; margin-top: 30px; }
+
+        /* Treasure Hunt */
+        .treasure-hunt {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fdf4ff 100%);
+            padding: 40px 20px;
+        }
+        .hunt-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .hunt-title {
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .hunt-subtitle { font-size: 20px; color: #6b7280; }
+        .locations-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .location-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .location-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .location-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .location-content {
+            padding: 30px;
+        }
+        .location-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .location-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        .location-clue {
+            font-size: 18px;
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .location-description {
+            font-size: 16px;
+            color: #374151;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .location-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #8b5cf6;
+            margin-bottom: 15px;
+        }
+        .maps-btn {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .maps-btn:hover { background: #2563eb; transform: translateY(-2px); }
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .invitation-card { padding: 40px 30px; }
+            .invitation-title { font-size: 36px; }
+            .hunt-title { font-size: 32px; }
+            .location-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Invitation Page -->
+    <div class="invitation-page" id="invitationPage">
+        <div class="invitation-card">
+            <div class="gift-icon">🎁</div>
+            <h1 class="invitation-title">You're Invited!</h1>
+            <h2 class="invitation-subtitle">A Special Birthday Surprise</h2>
+            <p class="invitation-text">Get ready for an unforgettable adventure through the beautiful streets of Cuernavaca, Mexico.</p>
+            <p class="invitation-text">A treasure hunt of amazing locations awaits, each one carefully chosen just for you.</p>
+            <button class="start-btn" onclick="startAdventure()">
+                Open Your Surprise ✨
+            </button>
+            <div class="decorations">🎈 🎉 🎊 🎂</div>
+        </div>
+    </div>
+
+    <!-- Treasure Hunt -->
+    <div class="treasure-hunt" id="treasureHunt">
+        <div class="lang-toggle" onclick="toggleLanguage()">
+            <span id="langText">🌐 Switch to Español</span>
+        </div>
+
+        <div class="hunt-header">
+            <h1 class="hunt-title">Cuernavaca Birthday Adventure</h1>
+            <p class="hunt-subtitle">6 Magical Locations Await You</p>
+        </div>
+
+        <div class="locations-container" id="locationsContainer"></div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        const locations = [
+            {
+                step: 1,
+                title_es: "Tu primera sorpresa: un oasis termal escondido…",
+                title_en: "Your first surprise: a hidden thermal oasis…",
+                clue_es: "Hoy comenzamos con calma, agua tibia y naturaleza. La primera magia de nuestro viaje.",
+                clue_en: "We begin with warmth, water, and nature. The first magic of our journey.",
+                locationName: "Las Huertas Thermal Springs",
+                googleMapsUrl: "https://maps.google.com/?q=Las+Huertas+Morelos+Mexico",
+                photo: "https://images.unsplash.com/photo-1656352451218-202ab9bd09a6?w=800",
+                description_es: "Sumérgate en aguas termales naturales rodeadas de vegetación exuberante.",
+                description_en: "Immerse yourself in natural thermal waters surrounded by lush vegetation."
+            },
+            {
+                step: 2,
+                title_es: "Un paseo secreto entre barrancas verdes…",
+                title_en: "A hidden ravine walk inside the city…",
+                clue_es: "Entre los árboles y el sonido del agua, descubriremos paz.",
+                clue_en: "Among the trees and the sound of water, we'll discover peace.",
+                locationName: "Barranca de Amanalco",
+                googleMapsUrl: "https://maps.google.com/?q=Barranca+de+Amanalco+Cuernavaca",
+                photo: "https://images.unsplash.com/photo-1710196913619-75570747478a?w=800",
+                description_es: "Un refugio natural de serenidad a pocos minutos del centro.",
+                description_en: "A natural sanctuary of serenity within minutes of the city center."
+            },
+            {
+                step: 3,
+                title_es: "Un patio histórico en silencio dorado…",
+                title_en: "A peaceful historic courtyard in golden light…",
+                clue_es: "Las piedras cuentan historias de siglos pasados.",
+                clue_en: "The stones tell stories of centuries past.",
+                locationName: "Catedral de Cuernavaca",
+                googleMapsUrl: "https://maps.google.com/?q=Catedral+de+Cuernavaca+Mexico",
+                photo: "https://images.unsplash.com/photo-1581388231958-4e1978771a61?w=800",
+                description_es: "El claustro histórico de la Catedral Metropolitana, un tesoro arquitectónico.",
+                description_en: "The historic cloister of the Metropolitan Cathedral, an architectural treasure."
+            },
+            {
+                step: 4,
+                title_es: "Jardines románticos escondidos en el corazón…",
+                title_en: "Romantic gardens in the heart of the city…",
+                clue_es: "Fuentes, flores, y un paraíso verde te esperan.",
+                clue_en: "Fountains, flowers, and a green paradise await.",
+                locationName: "Jardín Borda",
+                googleMapsUrl: "https://maps.google.com/?q=Jardin+Borda+Cuernavaca",
+                photo: "https://images.unsplash.com/photo-1762592958299-f41204b8b358?w=800",
+                description_es: "Un jardín histórico de ensueño con fuentes y senderos románticos.",
+                description_en: "A dreamlike historic garden with fountains and romantic pathways."
+            },
+            {
+                step: 5,
+                title_es: "Cena sorpresa bajo una obra maestra arquitectónica…",
+                title_en: "Dinner beneath an architectural masterpiece…",
+                clue_es: "La arquitectura de Félix Candela te rodeará mientras disfrutamos juntos.",
+                clue_en: "Félix Candela's architecture will surround us as we enjoy together.",
+                locationName: "Los Manantiales",
+                googleMapsUrl: "https://maps.google.com/?q=Los+Manantiales+Cuernavaca",
+                photo: "https://images.unsplash.com/photo-1666025959951-da3036b03b29?w=800",
+                description_es: "Un restaurante icónico bajo la estructura wavit de Candela.",
+                description_en: "An iconic restaurant beneath Candela's wave-like structure."
+            },
+            {
+                step: 6,
+                title_es: "Gran revelación: mariposas y jardines infinitos…",
+                title_en: "Grand reveal: butterflies and endless gardens…",
+                clue_es: "Mariposas de colores y un cielo infinito nos esperan. ¡El gran final!",
+                clue_en: "Colorful butterflies and an infinite sky await us. The grand finale!",
+                locationName: "Jardines de México — Mariposario",
+                googleMapsUrl: "https://maps.google.com/?q=Jardines+de+Mexico+Mariposario+Tequesquitengo",
+                photo: "https://images.unsplash.com/photo-1592510476943-59d922f151cf?w=800",
+                description_es: "Un santuario de mariposas en un jardín botánico espectacular.",
+                description_en: "A butterfly sanctuary in a spectacular botanical garden."
+            }
+        ];
+
+        function startAdventure() {
+            document.getElementById('invitationPage').style.display = 'none';
+            document.getElementById('treasureHunt').style.display = 'block';
+            renderLocations();
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function renderLocations() {
+            const container = document.getElementById('locationsContainer');
+            container.innerHTML = '';
+
+            locations.forEach((loc, index) => {
+                const card = document.createElement('div');
+                card.className = 'location-card';
+                card.innerHTML = `
+                    <img src="${loc.photo}" alt="${loc.locationName}" class="location-image">
+                    <div class="location-content">
+                        <span class="location-number">Location ${loc.step}</span>
+                        <h2 class="location-title">${currentLang === 'en' ? loc.title_en : loc.title_es}</h2>
+                        <p class="location-clue">${currentLang === 'en' ? loc.clue_en : loc.clue_es}</p>
+                        <p class="location-description">${currentLang === 'en' ? loc.description_en : loc.description_es}</p>
+                        <p class="location-name">📍 ${loc.locationName}</p>
+                        <a href="${loc.googleMapsUrl}" target="_blank" class="maps-btn">Open in Google Maps 🗺️</a>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Confetti on scroll into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 } });
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(card);
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            document.getElementById('langText').textContent = currentLang === 'en' ? '🌐 Switch to Español' : '🌐 Switch to English';
+            renderLocations();
+        }
+
+        // Check URL for direct access
+        if (window.location.hash === '#start') {
+            startAdventure();
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,9 @@ import adapterNode from '@sveltejs/adapter-node';
 import adapterVercel from '@sveltejs/adapter-vercel';
 
 let adapter;
-if (process.env.VERCEL) {
+// Use Vercel adapter if building on Vercel or if NODE_ENV is production
+// This ensures the correct output directory structure for Vercel deployment
+if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
 	adapter = adapterVercel;
 } else {
 	adapter = adapterNode;

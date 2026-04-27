@@ -4,6 +4,24 @@ const PUBLIC_SERVER_URL = process.env['PUBLIC_SERVER_URL'];
 
 export const authHook: Handle = async ({ event, resolve }) => {
 	event.cookies.delete('csrftoken', { path: '/' });
+
+	// Public routes that don't require authentication
+	const publicRoutes = ['/surprise'];
+	const isPublicRoute = publicRoutes.some(route => event.url.pathname.startsWith(route));
+
+	// Skip auth check for public routes
+	if (isPublicRoute) {
+		event.locals.user = null;
+		return await resolve(event);
+	}
+
+	// If no backend server URL is configured, skip authentication entirely
+	// This allows the frontend to work standalone without a backend
+	if (!PUBLIC_SERVER_URL) {
+		event.locals.user = null;
+		return await resolve(event);
+	}
+
 	try {
 		let sessionid = event.cookies.get('sessionid');
 
@@ -12,7 +30,7 @@ export const authHook: Handle = async ({ event, resolve }) => {
 			return await resolve(event);
 		}
 
-		const serverEndpoint = PUBLIC_SERVER_URL || 'http://localhost:8000';
+		const serverEndpoint = PUBLIC_SERVER_URL;
 
 		const cookie = event.request.headers.get('cookie') || '';
 

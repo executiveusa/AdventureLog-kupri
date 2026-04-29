@@ -15,7 +15,6 @@ export default defineConfig({
 	},
 	server: {
 		middlewareMode: false,
-		allowedHosts: 'all',
-		hmr: false
+		allowedHosts: (host) => true
 	}
 });

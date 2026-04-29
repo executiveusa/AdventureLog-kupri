@@ -14,7 +14,11 @@ export default defineConfig({
 		chunkSizeWarningLimit: 1000
 	},
 	server: {
-		middlewareMode: false,
-		allowedHosts: (host) => true
+		allowedHosts: '.',
+		hmr: {
+			protocol: 'ws',
+			host: '0.0.0.0',
+			port: 24678
+		}
 	}
 });

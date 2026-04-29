@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cd frontend && npm run dev -- --host --port 3000",
+    "dev": "cd frontend && npm run dev -- --host",
     "build": "cd frontend && npm run build",
     "preview": "cd frontend && npm run preview",
     "postinstall": "cd frontend && npm install"

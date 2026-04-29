@@ -14,7 +14,8 @@ export default defineConfig({
 		chunkSizeWarningLimit: 1000
 	},
 	server: {
-		allowedHosts: '.',
-		hmr: false
+		allowedHosts: ['.'],
+		hmr: false,
+		middlewareMode: false
 	}
 });

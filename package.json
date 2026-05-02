@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "cd frontend && npx svelte-kit sync && npm run dev -- --host",
     "build": "cd frontend && npm run build",
-    "install": "cd frontend && npm install"
+    "preview": "cd frontend && npm run preview",
+    "postinstall": "cd frontend && npm install && npx svelte-kit sync"
+  },
+  "dependencies": {
+    "@sveltejs/kit": "^2.59.0",
+    "unplugin-icons": "^23.0.1",
+    "vite": "^8.0.10"
   }
 }

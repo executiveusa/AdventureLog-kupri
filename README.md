@@ -1,383 +1,96 @@
-<div align="center">
+# Querencia — Kupuri Media
 
-  <img src="brand/screenshots/adventures.png" alt="Querencia" width="200" height="auto" />
-  <h1>Querencia™</h1>
-  <h3>by Kupuri Media™</h3>
-  
-  <p>
-    <em>El lugar donde más te sientes tú mismo.</em><br/>
-    <em>The place where you feel most yourself.</em>
-  </p>
-  <p>
-    Plataforma eco-luxury de viajes curados para Latinoamérica. Hecho en México por una Sociedad de Propósito Social.
-  </p>
+*El lugar donde más te sientes tú mismo. · The place where you feel most yourself.*
 
-  <h4>
-    <a href="https://querencia.app">querencia.app</a>
-    <span> · </span>
-    <a href="#documentación">Documentación</a>
-    <span> · </span>
-    <a href="mailto:hola@kupurimedia.com">Contacto</a>
-  </h4>
+Querencia is being rebuilt as a **bilingual (ES/EN) scroll-driven travel showcase** for high-end
+journeys around **Mexico City, Morelos (Tepoztlán and the Cuernavaca hot springs), Valle de Bravo
+and Puerto Vallarta / Punta Mita**. It has two jobs at once:
 
-  <p>
-    <img src="https://img.shields.io/badge/Idioma_principal-Español_MX-green" alt="Idioma" />
-    <img src="https://img.shields.io/badge/Moneda-MXN-blue" alt="Currency" />
-    <img src="https://img.shields.io/badge/Empresa-S.P.S._México-orange" alt="Social Purpose" />
-    <img src="https://img.shields.io/badge/Framework-SvelteKit_v2-red" alt="SvelteKit" />
-  </p>
-</div>
+1. **Generate real leads** for custom, premium trips. Every scroll ends in a short "plan my
+   journey" form that reaches a real person on WhatsApp or email.
+2. **Show the craft** of Kupuri Media's creative strategist. It is the flagship case study on her
+   portfolio profile: concept, art direction, copy, motion and conversion design in one piece.
 
-<br />
+It began as a private birthday surprise: a password-unlocked, step-by-step journey through
+Cuernavaca (thermal springs, Jardín Borda, the cathedral, a Félix Candela dinner, the butterfly
+garden). That idea — *a trip revealed one moment at a time* — stays as a signature feature.
+
+> **Status (28 Sep 2026): in transition.** The repository still contains the original AdventureLog
+> fork (a self-hosted travel diary: Django backend + SvelteKit frontend). The new showcase site is
+> planned — see [`documentation/PLAN.md`](documentation/PLAN.md). Nothing under "Planned" is live yet.
 
 ---
 
-## Acerca del Proyecto · About the Project
+## What exists today (verified by reading the code)
 
-**Querencia™** es una aplicación de viajes eco-luxury construida en Mexico, enfocada en experiencias auténticas de Latinoamérica. Combina planificación potenciada por IA con verificación de guías locales, ecoturismo comunitario y experiencias sorpresa personalizadas.
+| Area | Where | State |
+|---|---|---|
+| Birthday surprise flow (ES/EN, password steps, confetti) | `frontend/src/routes/(full)/surprise/*`, `frontend/src/lib/surprise/*`, `frontend/static/surprise/itinerary/cuernavaca-sacred.json` | Works as a concept; photos are Unsplash stand-ins, some mismatched |
+| Querencia landing page | `frontend/src/routes/+page.svelte` | Contains unverified claims (see below); email form only redirects to sign-up; WhatsApp link has no number |
+| Eco directory | `frontend/src/routes/directory`, `frontend/static/directory/listings.json` | **Broken** — the JSON file is invalid (two arrays concatenated) |
+| Blog "El Diario" | `frontend/src/routes/blog`, `frontend/static/blog/posts.json` | **Broken** — JSON is truncated |
+| Pricing | `frontend/src/routes/pricing` | Buttons do nothing (TODO); text has encoding damage |
+| Surprise itinerary API | `frontend/src/routes/surprise/itinerary/[...path]/+server.ts` | Imports a file that does not exist — likely build failure |
+| AdventureLog core (map, collections, auth, admin) | `frontend/src/routes/*`, `backend/` | Stock upstream; needs the Django backend, which the Vercel deploy does not run |
+| Hermes agent system | `AGENTS.md` | **Specification only** — the described `hermes/` and `api/` code is not in this repo |
 
-**Querencia™** is an eco-luxury travel app built in Mexico, focused on authentic Latin American experiences. It combines AI-powered planning with local guide verification, community ecotourism, and personalized surprise experiences.
+### Claims removed from this README until they are proven
 
-**Empresa**: Kupuri Media™ S.A.S. de P.S.  
-**País de incorporación**: México  
-**Estructura legal**: Sociedad de Propósito Social — 5% de ganancias netas a reforestación y turismo comunitario.
-
----
-
-## Tabla de Contenidos
-
-- [Funcionalidades](#funcionalidades)
-- [Stack Tecnológico](#stack-tecnológico)
-- [Precios](#precios)
-- [Instalación Local](#instalación-local)
-- [Variables de Entorno](#variables-de-entorno)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Agente Hermes](#agente-hermes)
-- [Licencia](#licencia)
-- [Contacto](#contacto)
+Earlier versions stated fixed MXN subscription tiers, "47 eco-tours completed", "carbon neutral",
+"eco-certified", "100% vetted guides", "24/7 WhatsApp concierge", partner discounts and a legal
+entity type. Nothing in the repository backs these, so they are not repeated here. The same
+statements still appear on the landing and pricing pages and will be removed or proven during the
+rebuild. The previous README is kept at
+[`documentation/LEGACY_README.md`](documentation/LEGACY_README.md).
 
 ---
 
-## Funcionalidades
+## Planned: the showcase site
 
-### Para Viajeros
-- **Directorio Ecoturístico** — 8+ destinos verificados en México y Latinoamérica con calificación de impacto ecológico
-- **El Diario (Blog)** — Artículos sobre viaje consciente, destinos ocultos y turismo sostenible (bilingüe ES/EN)
-- **Planificación con IA** — Itinerarios generados por el agente Hermes, verificados por guías locales
-- **Mapa Interactivo** — Visualiza destinos y aventuras en un mapa en tiempo real
+- **One continuous scroll journey** through the region, each scene a short cinematic clip that
+  scrubs with the scroll, with a native vertical version for phones.
+- **Real places only.** Each destination names the real venue, links its official site, and marks
+  every image as *official photo*, *our photo* or *illustrative render*. No invented reviews,
+  ratings, prices or partnerships.
+- **Bilingual by design**: Spanish first, English equal — no machine-translated filler.
+- **Lead capture that works**: a few questions (dates, group, budget range, what matters most) →
+  saved server-side → WhatsApp/email handoff with answers prefilled. Never a fake "thank you".
+- **"Gift a surprise journey"**: the birthday reveal flow, offered as a product.
+- **Portfolio credit**: a discreet "Concept, strategy & art direction by …" line and an embeddable
+  preview for the creative strategist's profile.
 
-### Sistema de Experiencias Sorpresa
-- Flujo de revelación paso a paso con contraseña (modelo "caza del tesoro")
-- Rutas dinámicas por slug: `/surprise/experience/[slug]`
-- Itinerarios JSON configurables en `frontend/static/surprise/itinerary/`
-- Bilingüe ES/EN por defecto
-
-### Precios en MXN
-| Plan | Precio | Descripción |
-|------|--------|-------------|
-| Explorador | Gratis | Acceso al directorio y El Diario |
-| Orientador | $490 MXN/mes | IA + verificación local |
-| Sagrado | $1,799 MXN/mes | Agente Hermes 24/7 + experiencias curadas |
-| Círculo Querencia | $8,499 MXN/trimestre | Agencias, creadores y exploradores frecuentes |
+Built from the scroll-world template proven on BREATHE International (Next.js, portable scroll-scrub
+engine, Higgsfield-generated atmosphere clips, self-hosted media, Coolify deploy). Details and open
+decisions: [`documentation/PLAN.md`](documentation/PLAN.md).
 
 ---
 
-## Stack Tecnológico
-
-<details>
-  <summary>Frontend</summary>
-  <ul>
-    <li><a href="https://svelte.dev/">SvelteKit v2</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-    <li><a href="https://daisyui.com/">DaisyUI</a></li>
-    <li><a href="https://github.com/dimfeld/svelte-maplibre/">Svelte MapLibre</a></li>
-    <li>svelte-i18n (ES por defecto, + 18 idiomas más)</li>
-    <li>@sveltejs/adapter-vercel para deploy</li>
-  </ul>
-</details>
-
-<details>
-  <summary>Backend</summary>
-  <ul>
-    <li><a href="https://www.djangoproject.com/">Django 5</a></li>
-    <li><a href="https://postgis.net/">PostGIS / PostgreSQL</a></li>
-    <li><a href="https://www.django-rest-framework.org/">Django REST Framework</a></li>
-    <li>Supabase (auth + realtime + storage)</li>
-    <li>Agente HERMES — LangGraph + OpenAI (ver <code>AGENTS.md</code>)</li>
-  </ul>
-</details>
-
-<details>
-  <summary>Infraestructura</summary>
-  <ul>
-    <li>Vercel (frontend)</li>
-    <li>VPS 31.220.58.212 (agente Hermes)</li>
-    <li>Docker Compose (desarrollo local)</li>
-  </ul>
-</details>
-
----
-
-## Instalación Local
+## Running the current (legacy) app locally
 
 ```bash
-# Clonar
-git clone https://github.com/executiveusa/AdventureLog-kupri.git
-cd AdventureLog-kupri/AdventureLog
-
-# Frontend
-cd frontend
-npm install
-npm run dev
-
-# Backend (requiere Docker)
-cd ..
-docker-compose -f docker-compose.dev.yml up
+cp .env.example .env        # fill in real secrets; never commit them
+docker compose up -d        # frontend :8015, backend :8016
 ```
 
-El frontend corre en `http://localhost:5173` (o 5174 si el puerto está ocupado).
+Frontend only (SvelteKit 2, Node 20+):
 
----
-
-## Variables de Entorno
-
-```env
-# frontend/.env
-PUBLIC_SERVER_URL=http://localhost:8000
-PUBLIC_DISABLE_REGISTRATION=false
-
-# backend/.env
-DJANGO_SECRET_KEY=your-secret-key
-POSTGRES_DB=querencia
-POSTGRES_USER=querencia
-POSTGRES_PASSWORD=your-password
+```bash
+cd frontend && npm install && npm run dev
 ```
 
----
+## Rules for anyone (human or agent) working here
 
-## Estructura del Proyecto
+1. Real places, real links, real photos with credit — or clearly labelled illustrations.
+2. No invented numbers, testimonials, certifications, prices or partners.
+3. Every lead path reaches a real inbox or WhatsApp number before launch.
+4. Spanish and English ship together.
+5. Branch + PR for every change; nothing merges without approval.
+6. Secrets live in deployment settings, never in git.
 
-```
-AdventureLog/
-├── vercel.json                  ← Build config para Vercel
-├── AGENTS.md                    ← Spec del agente Hermes
-├── frontend/
-│   └── src/
-│       ├── routes/
-│       │   ├── +layout.svelte   ← Layout global, i18n init (default: es)
-│       │   ├── pricing/         ← Precios en MXN
-│       │   ├── blog/            ← El Diario (bilingüe)
-│       │   ├── directory/       ← Directorio ecoturístico
-│       │   └── (full)/
-│       │       └── surprise/    ← Sistema de experiencias sorpresa
-│       ├── lib/
-│       │   ├── components/
-│       │   │   ├── Footer.svelte     ← Footer bilingüe
-│       │   │   └── ChatWindow.svelte ← Chat Hermes (placeholder)
-│       │   └── surprise/
-│       │       └── SurpriseRevealFlow.svelte
-│       └── locales/             ← Traducciones svelte-i18n (es.json primario)
-└── backend/
-    └── server/                  ← Django app
-```
+## License and credit
 
----
+Built on [AdventureLog](https://github.com/seanmorley15/AdventureLog) by Sean Morley, licensed under
+the **GNU GPL v3** (see `LICENSE`). Modifications to AdventureLog code in this repository remain
+under the GPL.
 
-## Agente Hermes
-
-El agente HERMES es el núcleo de IA de Querencia. Ver [`AGENTS.md`](AGENTS.md) para la especificación completa.
-
-**Capacidades planeadas:**
-- Generación y validación de itinerarios
-- Concierge 24/7 por WhatsApp (Twilio/Meta Business API)
-- Análisis de escenas con VisionClaw
-- Coordinación de guías locales
-- Gestión de experiencias sorpresa
-
----
-
-## Idioma y Localización
-
-- **Idioma primario**: Español mexicano (`es`)
-- **Idioma secundario**: Inglés (`en`) — traducción secundaria visible en pantalla
-- **Moneda**: Pesos mexicanos (MXN)
-- **Zona horaria por defecto**: America/Mexico_City
-- El sistema usa `svelte-i18n` con cookie de locale. Sin cookie → `es` por defecto.
-
----
-
-## Licencia
-
-Distribuido bajo la GNU General Public License v3.0. Ver `LICENSE`.
-
----
-
-## Contacto
-
-**Kupuri Media™**  
-Correo: hola@kupurimedia.com  
-Web: querencia.app  
-México · Sociedad de Propósito Social
-
-> _"Querencia: el lugar donde uno se siente más a gusto, donde uno es más uno mismo."_
-
-  
-  <p>
-    The ultimate travel companion for the modern-day explorer.
-  </p>
-   
-<h4>
-    <a href="https://demo.adventurelog.app">View Demo</a>
-  <span> · </span>
-    <a href="https://adventurelog.app">Documentation</a>
-  <span> · </span>
-    <a href="https://discord.gg/wRbQ9Egr8C">Discord</a>
-  <span> · </span>
-    <a href="https://buymeacoffee.com/seanmorley15">Support 💖</a>
-  </h4>
-</div>
-
-<br />
-
-<!-- Table of Contents -->
-
-# Table of Contents
-
-- [About the Project](#-about-the-project)
-  - [Screenshots](#-screenshots)
-  - [Tech Stack](#-tech-stack)
-  - [Features](#-features)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-  - [Translation](#-translation)
-- [License](#-license)
-- [Contact](#-contact)
-- [Acknowledgements](#-acknowledgements)
-
-<!-- About the Project -->
-
-## ⭐ About the Project
-
-Starting from a simple idea of tracking travel locations, AdventureLog has grown into a full-fledged travel companion. With AdventureLog, you can log your adventures, keep track of where you've been on the world map, plan your next trip collaboratively, and share your experiences with friends and family.
-
-AdventureLog was created to solve a problem: the lack of a modern, open-source, user-friendly travel companion. Many existing travel apps are either too complex, too expensive, or too closed-off to be useful for the average traveler. AdventureLog aims to be the opposite: simple, beautiful, and open to everyone.
-
-<!-- Screenshots -->
-
-### 📷 Screenshots
-
-<div align="center"> 
-  <img src="./brand/screenshots/adventures.png" alt="Locations" />
-  <p>Displays the locations you have visited and the ones you plan to embark on. You can also filter and sort the locations.</p>
-  <img src="./brand/screenshots/details.png" alt="Location Details" />
-  <p>Shows specific details about a location, including the name, date, location, description, and rating.</p>
-  <img src="./brand/screenshots/edit.png" alt="Edit Modal" />
-  <img src="./brand/screenshots/map.png" alt="Location Details" />
-  <p>View all of your locations on a map, with the ability to filter by visit status and add new ones by click on the map</p>
-  <img src="./brand/screenshots/map-satellite.png" alt="Location Details" />
-  <p>View a 3D representation of your locations and activities on the map, allowing for a more immersive exploration of your travel history.</p>
-  <img src="./brand/screenshots/dashboard.png" alt="Dashboard" />
-  <p>Displays a summary of your locations, including your world travel stats.</p>
-  <img src="./brand/screenshots/itinerary.png" alt="Itinerary" />
-  <p>Plan your adventures and travel itinerary with a list of activities and a map view. View your trip in a variety of ways, including an itinerary list, a map view, and a calendar view. Order your plans and details to create the perfect trip.</p>
-  <img src="./brand/screenshots/countries.png" alt="Countries" />
-  <p>Lists all the countries you have visited and plan to visit, with the ability to filter by visit status.</p>
-  <img src="./brand/screenshots/regions.png" alt="Regions" />
-  <p>Displays the regions for a specific country, includes a map view to visually select regions.</p>
-</div>
-
-<!-- TechStack -->
-
-### 🚀 Tech Stack
-
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://svelte.dev/">SvelteKit</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-    <li><a href="https://daisyui.com/">DaisyUI</a></li>
-    <li><a href="https://github.com/dimfeld/svelte-maplibre/">Svelte MapLibre</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://www.djangoproject.com/">Django</a></li>
-    <li><a href="https://postgis.net/">PostGIS</a></li>
-    <li><a href="https://www.django-rest-framework.org/">Django REST Framework</a></li>
-    <li><a href="https://allauth.org/">AllAuth</a></li>
-  </ul>
-</details>
-<!-- Features -->
-
-### 🎯 Features
-
-- **Track Your Adventures** 🌍: Log your adventures and keep track of where you've been on the world map.
-  - Locations can store a variety of information, including the location, date, and description.
-  - Locations can be sorted into custom categories for easy organization.
-  - Locations can be marked as private or public, allowing you to share your adventures with friends and family.
-  - Keep track of the countries and regions you've visited with the world travel book.
-  - Upload trails and activities to your locations to remember your experiences with detailed maps and stats.
-- **Plan Your Next Trip** 📃: Take the guesswork out of planning your next adventure with an easy-to-use itinerary planner.
-  - Itineraries can be created for any number of days and can include multiple destinations.
-  - Itineraries include many planning features like flight information, notes, checklists, and links to external resources.
-  - Itineraries can be shared with friends and family for collaborative planning.
-- **Share Your Experiences** 📸: Share your adventures with friends and family and collaborate on trips together.
-  - Locations and itineraries can be shared via a public link or directly with other AdventureLog users.
-  - Collaborators can view and edit shared itineraries (collections), making planning a breeze.
-
-<!-- Roadmap -->
-
-## 🧭 Roadmap
-
-The AdventureLog Roadmap can be found [here](https://github.com/users/seanmorley15/projects/5)
-
-<!-- Contributing -->
-
-## 👋 Contributing
-
-<a href="https://github.com/seanmorley15/AdventureLog/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=seanmorley15/AdventureLog" />
-</a>
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-### Translation
-
-AdventureLog is available on [Weblate](https://hosted.weblate.org/projects/adventurelog/). If you would like to help translate AdventureLog into your language, please visit the link and contribute!
-
-<a href="https://hosted.weblate.org/engage/adventurelog/">
-<img src="https://hosted.weblate.org/widget/adventurelog/multi-auto.svg" alt="Translation status" />
-</a>
-
-<!-- License -->
-
-## 📃 License
-
-Distributed under the GNU General Public License v3.0. See `LICENSE` for more information.
-
-<!-- Contact -->
-
-## 🤝 Contact
-
-Sean Morley - [website](https://seanmorley.com)
-
-Hi! I'm Sean, the creator of AdventureLog. I'm a college student and software developer with a passion for travel and adventure. I created AdventureLog to help people like me document their adventures and plan new ones effortlessly. As a student, I am always looking for more opportunities to learn and grow, so feel free to reach out via the contact on my website if you would like to collaborate or chat!
-
-<!-- Acknowledgments -->
-
-## 💎 Acknowledgements
-
-- Logo Design by [nordtektiger](https://github.com/nordtektiger)
-- WorldTravel Dataset [dr5hn/countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database)
-
-### Top Supporters 💖
-
-- [Veymax](https://x.com/veymax)
-- [nebriv](https://github.com/nebriv)
-- [Miguel Cruz](https://github.com/Tokynet)
-- [Victor Butler](https://x.com/victor_butler)
-# Birthday deployment Sun Feb  1 19:58:22 UTC 2026
+Contact: hola@kupurimedia.com

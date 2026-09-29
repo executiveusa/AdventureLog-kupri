@@ -1,0 +1,625 @@
+/* Querencia — colours come from the places: volcanic ink, pink cantera stone,
+   thermal water and paper. One accent; no gradients-for-decoration, no glass. */
+
+:root {
+  --ink: #15120f;
+  --ink-2: #221d18;
+  --paper: #f3ede4;
+  --paper-2: #e9e0d3;
+  --text: #f3ede4;
+  --text-muted: rgba(243, 237, 228, 0.68);
+  --line: rgba(243, 237, 228, 0.16);
+  --accent: #c4704f;
+  --accent-ink: #15120f;
+  --thermal: #2f6f6a;
+  --warn: #e7b56a;
+  --radius: 18px;
+  --wrap: 1180px;
+  --font-display-stack: var(--font-display), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body-stack: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body-stack);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sr-only,
+.skip:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip:focus {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* ---------- Scroll world (vendored engine) ---------- */
+.q-world {
+  --sw-bg: var(--ink);
+  --sw-ink: var(--paper);
+  --sw-ink-soft: rgba(243, 237, 228, 0.8);
+  --sw-accent: var(--accent);
+  --sw-font-display: var(--font-display-stack);
+  --sw-font-body: var(--font-body-stack);
+}
+.q-world .sw-topbar,
+.q-world .sw-particles {
+  display: none;
+}
+.q-world--past > :not(.sw-track) {
+  visibility: hidden;
+}
+/* The engine's buttons and rail label assume dark ink on light; our ink is light. */
+.q-world .sw-btn--primary {
+  background: var(--accent);
+  color: var(--ink);
+}
+.q-world .sw-route__label {
+  color: var(--ink);
+}
+.q-world .sw-copy__title {
+  font-weight: 500;
+  font-variation-settings: "SOFT" 60;
+  letter-spacing: -0.02em;
+}
+.q-noscript {
+  padding: 120px 20px 40px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Content after the journey sits above the engine's fixed layers. */
+.after-world,
+.page {
+  position: relative;
+  z-index: 70;
+  background: var(--ink);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: fixed;
+  z-index: 80;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px clamp(16px, 4vw, 40px);
+  background: rgba(21, 18, 15, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.site-header nav {
+  display: flex;
+  gap: 8px;
+}
+.wordmark {
+  font-family: var(--font-display-stack);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: rgba(21, 18, 15, 0.35);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+.pill--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+@media (max-width: 420px) {
+  .pill--solid {
+    display: none;
+  }
+}
+
+/* ---------- Layout ---------- */
+.wrap {
+  width: min(100% - 32px, var(--wrap));
+  margin-inline: auto;
+}
+.narrow {
+  width: min(100% - 32px, 760px);
+}
+.section {
+  padding: clamp(72px, 12vw, 140px) 0;
+}
+.page > .section:first-child {
+  padding-top: clamp(110px, 16vw, 170px);
+}
+.section--paper {
+  background: var(--paper);
+  color: var(--ink);
+  --text-muted: rgba(21, 18, 15, 0.66);
+  --line: rgba(21, 18, 15, 0.16);
+  --accent-ink: #fff8f0;
+  --warn: #9a5a12;
+}
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.display {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.2vw, 3.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.lede {
+  max-width: 56ch;
+  font-size: 1.15rem;
+  margin: 18px 0 40px;
+}
+.muted {
+  color: var(--text-muted);
+}
+.small {
+  font-size: 0.88rem;
+}
+.warn {
+  color: var(--warn);
+}
+.link {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+.grow {
+  flex: 1 1 200px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--wide {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .btn--wide {
+    width: auto;
+  }
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* ---------- Places ---------- */
+.region {
+  margin-top: 56px;
+}
+.region__name {
+  margin: 0 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+.places {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.place {
+  display: grid;
+  grid-template-rows: 150px auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--ink-2);
+}
+/* Until real photography is licensed, cards reuse the region's journey illustration. */
+.place__art {
+  position: relative;
+  background: var(--place-art) center 60% / cover, #2a211b;
+}
+.place[data-region="cdmx"] {
+  --place-art: url("/media/journey/posters/cdmx.svg");
+}
+.place[data-region="morelos"] {
+  --place-art: url("/media/journey/posters/aguas.svg");
+}
+.place[data-region="valle"] {
+  --place-art: url("/media/journey/posters/valle.svg");
+}
+.place[data-region="vallarta"] {
+  --place-art: url("/media/journey/posters/pacifico.svg");
+}
+.tag {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(21, 18, 15, 0.6);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.place__body {
+  padding: 18px 20px 20px;
+}
+.place__body h4 {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+.place__body p {
+  margin: 6px 0 0;
+}
+
+/* ---------- Lead form ---------- */
+.lead-form {
+  display: grid;
+  gap: 28px;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+legend,
+.legend {
+  display: block;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  user-select: none;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.chip:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.chip[data-active="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.field {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+.grid-2 {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.hp {
+  display: none;
+}
+.lead-done {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.lead-done__title {
+  margin: 0 0 8px;
+  font-family: var(--font-display-stack);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+/* ---------- Gift ---------- */
+.gift-teaser .btn {
+  margin-top: -8px;
+}
+.reveal__progress {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-size: 0.9rem;
+}
+.bar {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--line);
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+.reveal__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.reveal-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ink-2);
+}
+.reveal-card[data-state="locked"] {
+  opacity: 0.45;
+}
+.reveal-card[data-state="current"] {
+  border-color: var(--accent);
+}
+.reveal-card h3 {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 500;
+  font-size: 1.35rem;
+}
+.reveal-card .muted {
+  margin: 6px 0 0;
+}
+.reveal-card__open {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  animation: reveal 0.5s ease both;
+}
+.reveal-card__place {
+  margin: 0;
+  font-weight: 600;
+  color: var(--accent);
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-card__open {
+    animation: none;
+  }
+}
+.code-form {
+  margin-top: 14px;
+}
+.code-form code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--line);
+  color: var(--text);
+}
+.reveal__done {
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: var(--thermal);
+}
+.reveal__done h3 {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+/* ---------- Case study ---------- */
+.credit {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+.case-steps {
+  list-style: none;
+  margin: 48px 0;
+  padding: 0;
+  display: grid;
+  gap: 32px;
+}
+.case-steps li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.case-steps__n {
+  font-family: var(--font-display-stack);
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.4rem;
+}
+.case-steps h2 {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.case-steps p {
+  margin: 6px 0 0;
+}
+.embed {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: minmax(160px, 38vh) auto;
+  background: var(--ink);
+}
+.embed__art {
+  background: url("/media/journey/posters/aguas.svg") center / cover;
+}
+.embed__body {
+  padding: 24px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+.embed__title {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  line-height: 1.1;
+}
+.embed .btn {
+  justify-self: start;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--line);
+  background: var(--ink);
+}
+.footer-grid {
+  display: grid;
+  gap: 28px;
+}
+@media (min-width: 760px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+.footer-links a {
+  text-underline-offset: 3px;
+}

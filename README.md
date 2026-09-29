@@ -15,9 +15,10 @@ It began as a private birthday surprise: a password-unlocked, step-by-step journ
 Cuernavaca (thermal springs, Jardín Borda, the cathedral, a Félix Candela dinner, the butterfly
 garden). That idea — *a trip revealed one moment at a time* — stays as a signature feature.
 
-> **Status (28 Sep 2026): in transition.** The repository still contains the original AdventureLog
-> fork (a self-hosted travel diary: Django backend + SvelteKit frontend). The new showcase site is
-> planned — see [`documentation/PLAN.md`](documentation/PLAN.md). Nothing under "Planned" is live yet.
+> **Status (29 Sep 2026): in transition.** The new showcase lives in [`web/`](web/README.md) and
+> runs locally with illustrated placeholder scenes. It is **not deployed yet**: the current Vercel
+> project still builds the original AdventureLog fork in `frontend/` (SvelteKit + Django).
+> Remaining steps: [`documentation/PLAN.md`](documentation/PLAN.md).
 
 ---
 
@@ -30,7 +31,7 @@ garden). That idea — *a trip revealed one moment at a time* — stays as a sig
 | Eco directory | `frontend/src/routes/directory`, `frontend/static/directory/listings.json` | **Broken** — the JSON file is invalid (two arrays concatenated) |
 | Blog "El Diario" | `frontend/src/routes/blog`, `frontend/static/blog/posts.json` | **Broken** — JSON is truncated |
 | Pricing | `frontend/src/routes/pricing` | Buttons do nothing (TODO); text has encoding damage |
-| Surprise itinerary API | `frontend/src/routes/surprise/itinerary/[...path]/+server.ts` | Imports a file that does not exist — likely build failure |
+| Surprise itinerary API | (removed) | The route imported a file that did not exist and broke `vite build`; the itineraries are served as static files instead |
 | AdventureLog core (map, collections, auth, admin) | `frontend/src/routes/*`, `backend/` | Stock upstream; needs the Django backend, which the Vercel deploy does not run |
 | Hermes agent system | `AGENTS.md` | **Specification only** — the described `hermes/` and `api/` code is not in this repo |
 
@@ -45,7 +46,14 @@ rebuild. The previous README is kept at
 
 ---
 
-## Planned: the showcase site
+## The showcase site (`web/`)
+
+Built so far (see [`web/README.md`](web/README.md)): the bilingual scroll journey with illustrated
+scenes, nine real places with source links, the lead form and `/api/lead`, the "gift a surprise
+journey" demo at `/regalo`, and the case study at `/caso` (with an embeddable card). Still to do:
+the generated video clips, real photography, and switching the deploy to `web/`.
+
+The full vision:
 
 - **One continuous scroll journey** through the region, each scene a short cinematic clip that
   scrubs with the scroll, with a native vertical version for phones.

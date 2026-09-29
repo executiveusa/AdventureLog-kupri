@@ -1,18 +1,19 @@
 # Querencia — transition plan
 
-Status: **approved plan, not built yet** (29 Sep 2026). Each step lands as its own reviewed PR.
+Status (29 Sep 2026): steps 1–6 built in `web/` with illustrated placeholder scenes; step 7 (media)
+waits for cost approval; step 8 is partly done (the build-breaking itinerary route is removed).
 
 ## Why
 
 The repo began as a private birthday surprise: a password-step reveal of a Cuernavaca day
-(Las Huertas springs, Jardín Borda, the cathedral, Los Manantiales, the butterfly garden). It sits
+(Las Huertas springs, Jardín Borda, the cathedral, a dinner stop and the butterfly garden). It sits
 on a stock AdventureLog fork (SvelteKit + Django), and much of the public site around it is
 broken or untrue:
 
 - `frontend/static/directory/listings.json` is invalid (two arrays concatenated).
 - `frontend/static/blog/posts.json` is truncated.
 - The pricing buttons are TODOs.
-- The surprise itinerary API imports a file that does not exist.
+- The surprise itinerary API imported a file that does not exist (removed 29 Sep 2026).
 - The Django backend is not run by the Vercel deploy.
 - The landing and pricing pages state unproven facts: tiers, "47 eco-tours", "carbon neutral" and
   certifications.
@@ -48,9 +49,9 @@ reveal**. Around it we build a scroll-stopping, bilingual showcase that does two
 
    | # | Scene | Real places (official links) |
    |---|---|---|
-   | 1 | Dawn over the volcanoes → CDMX rooftops | Museo Nacional de Antropología, Chapultepec |
+   | 1 | Dawn over the volcanoes → CDMX rooftops | Museo Nacional de Antropología; Los Manantiales (Félix Candela), Xochimilco |
    | 2 | Road south into cloud forest → Tepoztlán cliffs | Tepozteco, Tepoztlán market |
-   | 3 | **Cuernavaca: steam over thermal pools** (signature) | Las Huertas springs, Jardín Borda, Los Manantiales (Félix Candela) |
+   | 3 | **Morelos: steam over thermal pools** (signature) | Balneario Las Huertas (Tlaquiltenango, south of Cuernavaca), Jardín Borda, Catedral de Cuernavaca |
    | 4 | Valle de Bravo: lake and paragliders | Lake Valle de Bravo, Monte Alto |
    | 5 | Flight to the Pacific → Puerto Vallarta / Punta Mita | Malecón, Islas Marietas (permit-controlled access) |
    | 6 | Night calm | **"Plan my journey"** + **"Gift a surprise journey"** |
@@ -82,7 +83,7 @@ reveal**. Around it we build a scroll-stopping, bilingual showcase that does two
 8. **Truth pass on the legacy app**:
    - Remove the unproven claims from the Svelte landing and pricing pages, or move the legacy UI
      behind `/legacy`.
-   - Fix or delete the broken directory and blog JSON and the missing itinerary import.
+   - Fix or delete the broken directory and blog JSON. (The missing itinerary import is done.)
 
 ## Definition of done (per step)
 
@@ -97,6 +98,12 @@ reveal**. Around it we build a scroll-stopping, bilingual showcase that does two
   posters.
 - A grep finds none of the removed claims.
 - No secrets are in git.
+
+## Corrections found while building
+
+- Los Manantiales, Félix Candela's restaurant, is in **Xochimilco, Mexico City**, not Cuernavaca.
+  The original birthday itinerary searched for it in Cuernavaca.
+- Balneario Las Huertas is in **Tlaquiltenango**, south of Cuernavaca, not in the city.
 
 ## Inputs needed from the owner
 

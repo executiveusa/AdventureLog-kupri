@@ -25,11 +25,20 @@ export interface Place {
   retrievedAt: string
 }
 
-export const REGIONS: { id: RegionId; name: Record<Locale, string> }[] = [
-  { id: "cdmx", name: { es: "Ciudad de México", en: "Mexico City" } },
-  { id: "morelos", name: { es: "Morelos: Tepoztlán y Cuernavaca", en: "Morelos: Tepoztlán & Cuernavaca" } },
-  { id: "valle", name: { es: "Valle de Bravo", en: "Valle de Bravo" } },
-  { id: "vallarta", name: { es: "Puerto Vallarta y Punta Mita", en: "Puerto Vallarta & Punta Mita" } },
+// `short` is the chip label in the form; `name` titles the places index.
+export const REGIONS: { id: RegionId; name: Record<Locale, string>; short: Record<Locale, string> }[] = [
+  { id: "cdmx", name: { es: "Ciudad de México", en: "Mexico City" }, short: { es: "CDMX", en: "Mexico City" } },
+  {
+    id: "morelos",
+    name: { es: "Morelos: Tepoztlán y Cuernavaca", en: "Morelos: Tepoztlán & Cuernavaca" },
+    short: { es: "Tepoz y Cuerna", en: "Tepoztlán & Cuernavaca" },
+  },
+  { id: "valle", name: { es: "Valle de Bravo", en: "Valle de Bravo" }, short: { es: "Valle de Bravo", en: "Valle de Bravo" } },
+  {
+    id: "vallarta",
+    name: { es: "Puerto Vallarta y Punta Mita", en: "Puerto Vallarta & Punta Mita" },
+    short: { es: "Vallarta y Punta Mita", en: "Vallarta & Punta Mita" },
+  },
 ]
 
 const RETRIEVED = "2026-09-29"

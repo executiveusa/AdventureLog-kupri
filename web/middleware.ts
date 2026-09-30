@@ -2,17 +2,11 @@ import { NextResponse, type NextRequest } from "next/server"
 
 import { DEFAULT_LOCALE, isLocale, type Locale } from "@/brand.config"
 
-// Every page lives under /es or /en. A path without a locale is redirected: the visitor's
-// saved choice first, then their browser language, then Spanish.
+// Every page lives under /es or /en. Spanish comes first: a path without a locale goes to
+// Spanish unless the visitor already chose English (saved in the `lang` cookie).
 function pickLocale(request: NextRequest): Locale {
   const saved = request.cookies.get("lang")?.value
-  if (isLocale(saved)) return saved
-  const accept = request.headers.get("accept-language") ?? ""
-  for (const part of accept.split(",")) {
-    const code = part.split(";")[0]?.trim().slice(0, 2).toLowerCase()
-    if (isLocale(code)) return code
-  }
-  return DEFAULT_LOCALE
+  return isLocale(saved) ? saved : DEFAULT_LOCALE
 }
 
 export function middleware(request: NextRequest) {

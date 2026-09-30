@@ -71,7 +71,7 @@ export const GIFT_DEMO: GiftStep[] = [
     code: "CERRO",
     title: { es: "Día dos: subir al cerro", en: "Day two: up the mountain" },
     clue: {
-      es: "Zapatos cómodos. La vista se gana a pie.",
+      es: "Tenis cómodos. La vista se gana a pie.",
       en: "Comfortable shoes. The view is earned on foot.",
     },
     reveal: {

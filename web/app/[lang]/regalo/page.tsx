@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
 import type { Locale } from "@/brand.config"
-import { LeadForm } from "@/components/LeadForm"
 import { RevealFlow } from "@/components/RevealFlow"
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome"
 import { getDictionary } from "@/content/i18n"
@@ -12,6 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return { title: dict.gift.title, description: dict.gift.intro, alternates: { canonical: `/${lang}/regalo` } }
 }
 
+// Proof of the signature idea. It ends in the same form as the home page (gift switch on),
+// so there is still only one conversion.
 export default async function GiftPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = (await params) as { lang: Locale }
   const dict = getDictionary(lang)
@@ -19,22 +21,23 @@ export default async function GiftPage({ params }: { params: Promise<{ lang: str
   return (
     <>
       <SiteHeader dict={dict} path="/regalo" />
-      <main className="page">
-        <section className="section wrap narrow">
-          <p className="eyebrow">{dict.gift.teaserEyebrow}</p>
-          <h1 className="display">{dict.gift.title}</h1>
-          <p className="lede muted">{dict.gift.intro}</p>
-          <RevealFlow dict={dict} />
-        </section>
-        <section id="crear" className="section section--paper">
+      <main className="page gallery">
+        <section className="section section--top">
           <div className="wrap narrow">
-            <h2 className="display">{dict.gift.formTitle}</h2>
-            <p className="lede muted">{dict.gift.doneBody}</p>
-            <LeadForm dict={dict} source="gift" />
+            <p className="eyebrow">{dict.gift.eyebrow}</p>
+            <h1 className="display">{dict.gift.title}</h1>
+            <p className="lede muted">{dict.gift.intro}</p>
+            <RevealFlow dict={dict} />
+            <div className="gift-cta">
+              <p className="muted">{dict.gift.doneBody}</p>
+              <Link href={`/${lang}?regalo=1#armar`} className="btn btn--solid">
+                {dict.gift.cta}
+              </Link>
+            </div>
           </div>
         </section>
+        <SiteFooter dict={dict} path="/regalo" />
       </main>
-      <SiteFooter dict={dict} />
     </>
   )
 }

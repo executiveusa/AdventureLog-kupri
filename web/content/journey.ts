@@ -72,16 +72,8 @@ export function buildJourneyConfig(dict: Dictionary): ScrollWorldConfig {
         accent: ACCENT[id],
         ...MEDIA[id],
         ...(index === 0 ? { scroll: 1.6, linger: 0.35 } : {}),
-        ...(last
-          ? {
-              scroll: 1.5,
-              linger: 0.4,
-              cta: {
-                primary: { label: dict.journey.ctaPlan, href: "#planear" },
-                secondary: { label: dict.journey.ctaGift, href: `/${dict.locale}/regalo` },
-              },
-            }
-          : {}),
+        // One action at the end of the film: the same one the header offers.
+        ...(last ? { scroll: 1.3, linger: 0.4, cta: { primary: { label: dict.journey.cta, href: "#armar" } } } : {}),
         ...copy,
       }
     }),

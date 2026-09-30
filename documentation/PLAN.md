@@ -3,6 +3,10 @@
 Status (29 Sep 2026): steps 1–6 built in `web/` with illustrated placeholder scenes; step 7 (media)
 waits for cost approval; step 8 is partly done (the build-breaking itinerary route is removed).
 
+> **30 Sep 2026 — pruned.** The journey, one primary action, the Apple-style gallery system,
+> Mexican-Spanish-first copy and the mobile contract are now locked in
+> [`JOURNEY.md`](JOURNEY.md), which supersedes the page structure described below.
+
 ## Why
 
 The repo began as a private birthday surprise: a password-step reveal of a Cuernavaca day

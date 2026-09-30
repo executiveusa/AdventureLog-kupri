@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Fraunces, Instrument_Sans } from "next/font/google"
+import { Inter } from "next/font/google"
 import { notFound } from "next/navigation"
 
 import { BRAND, isLocale, LOCALES } from "@/brand.config"
@@ -7,9 +7,9 @@ import { getDictionary } from "@/content/i18n"
 
 import "../globals.css"
 
-// Self-hosted at build time by next/font (no runtime request to Google).
-const display = Fraunces({ subsets: ["latin"], axes: ["opsz", "SOFT"], style: ["normal", "italic"], variable: "--font-display" })
-const body = Instrument_Sans({ subsets: ["latin"], variable: "--font-body" })
+// Apple devices render SF Pro through -apple-system (see globals.css); everyone else gets
+// Inter, self-hosted at build time by next/font (no runtime request to Google).
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" })
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }))
@@ -31,15 +31,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description: dict.meta.description,
       locale: lang === "es" ? "es_MX" : "en_US",
       type: "website",
-      images: ["/media/journey/posters/cdmx.svg"],
     },
   }
 }
 
 export const viewport: Viewport = {
-  themeColor: BRAND.colors.ink,
+  themeColor: BRAND.colors.film,
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 }
 
 export default async function RootLayout({
@@ -52,7 +52,7 @@ export default async function RootLayout({
   const { lang } = await params
   if (!isLocale(lang)) notFound()
   return (
-    <html lang={lang} className={`${display.variable} ${body.variable}`}>
+    <html lang={getDictionary(lang).htmlLang} className={inter.variable}>
       <body>{children}</body>
     </html>
   )

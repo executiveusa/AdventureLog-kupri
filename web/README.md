@@ -1,5 +1,7 @@
 # Querencia — web
 
+Journey, design and mobile rules are locked in [`../documentation/JOURNEY.md`](../documentation/JOURNEY.md).
+
 The bilingual (ES/EN) scroll showcase. Next.js 15, no CSS framework, one client file
 (`brand.config.ts`) plus content files. The legacy AdventureLog app in `../frontend` is untouched.
 
@@ -17,9 +19,9 @@ PLAYWRIGHT_CHROMIUM_PATH=/path/to/chrome pnpm test:e2e   # builds must exist: ru
 
 | Route | What it is |
 |---|---|
-| `/` | Redirects to `/es` or `/en` (saved choice, then browser language, then Spanish) |
-| `/[lang]` | Scroll journey (6 scenes) → real places → "Plan my journey" form → gift teaser |
-| `/[lang]/regalo` | Public demo of the surprise reveal (codes shown) + gift enquiry form |
+| `/` | Redirects to `/es` (Spanish first); to `/en` only if the visitor chose English before (`lang` cookie) |
+| `/[lang]` | Film (6 scenes) → how it works → places index with sources → **Armar mi viaje** form |
+| `/[lang]/regalo` | Public demo of the surprise reveal (codes shown); its CTA opens the home form with the gift switch on (`?regalo=1#armar`) |
 | `/[lang]/caso` | Case study for the creative strategist; `?embed=1` is a compact card for an iframe |
 | `POST /api/lead` | Lead intake (contract below) |
 | `GET /api/health` | `{ ok: true }` |
@@ -55,16 +57,16 @@ Request (JSON):
 | `regions` | `("cdmx"\|"morelos"\|"valle"\|"vallarta")[]` | optional |
 | `dates` | string ≤120 | free text |
 | `group` | `"1-2"\|"3-6"\|"7-12"\|"13+"` | optional |
-| `budget` | `"lt5k"\|"5-10k"\|"10-25k"\|"25k+"\|"talk"` | visitor's own estimate, USD |
-| `message` | string ≤1000 | optional |
-| `source` | `"trip"\|"gift"\|"portfolio"` | default `trip` |
+| `budget` | `"tier1"\|"tier2"\|"tier3"\|"tier4"\|"talk"` | visitor's own estimate; MXN bands on `/es`, USD on `/en` |
+| `gift` | boolean | surprise-gift switch, default `false` |
+| `source` | `"trip"\|"gift"\|"portfolio"` | default `trip`; the form sends `gift` when the switch is on |
 | `locale` | `"es"\|"en"` | default `es` |
 | `company` | must be empty | honeypot |
 
 Responses: `200 {ok:true}` forwarded · `400` invalid · `429` more than 5 per minute per IP ·
 `503 lead_backend_not_configured` · `502` webhook failed or unreachable.
 
-The webhook receives the same fields plus `channel` (`email`/`whatsapp`), `site: "querencia"` and
+The webhook receives the same fields plus `channel` (`email`/`whatsapp`), `currency` (`MXN`/`USD`), `site: "querencia"` and
 `receivedAt`, with header `Authorization: Bearer $LEAD_WEBHOOK_SECRET`.
 
 ## Configuration

@@ -63,8 +63,8 @@ export function RevealFlow({ dict }: { dict: Dictionary }) {
           const current = step.step === nextStep
           return (
             <li key={step.step} className="reveal-card" data-state={open ? "open" : current ? "current" : "locked"}>
-              <p className="eyebrow">
-                {locale === "es" ? "Día" : "Day"} {step.day} · {step.step}
+              <p className="reveal-card__meta" data-locked={t.locked}>
+                {t.day} {step.day} · {t.stop} {step.step}
               </p>
               <h3>{step.title[locale]}</h3>
               <p className="muted">{step.clue[locale]}</p>
@@ -77,7 +77,7 @@ export function RevealFlow({ dict }: { dict: Dictionary }) {
                   </a>
                 </div>
               ) : current ? (
-                <CodeForm dict={dict} code={step.code} onUnlock={() => unlock(step.step)} />
+                <CodeForm dict={dict} code={step.code} focus={unlocked.length > 0} onUnlock={() => unlock(step.step)} />
               ) : null}
             </li>
           )
@@ -87,8 +87,7 @@ export function RevealFlow({ dict }: { dict: Dictionary }) {
       {done && (
         <div className="reveal__done" role="status">
           <h3>{t.doneTitle}</h3>
-          <p className="muted">{t.doneBody}</p>
-          <button type="button" className="btn" onClick={reset}>
+          <button type="button" className="btn btn--quiet" onClick={reset}>
             {t.reset}
           </button>
         </div>
@@ -97,7 +96,17 @@ export function RevealFlow({ dict }: { dict: Dictionary }) {
   )
 }
 
-function CodeForm({ dict, code, onUnlock }: { dict: Dictionary; code: string; onUnlock: () => void }) {
+function CodeForm({
+  dict,
+  code,
+  focus,
+  onUnlock,
+}: {
+  dict: Dictionary
+  code: string
+  focus: boolean
+  onUnlock: () => void
+}) {
   const t = dict.gift
   const [value, setValue] = useState("")
   const [wrong, setWrong] = useState(false)
@@ -115,7 +124,7 @@ function CodeForm({ dict, code, onUnlock }: { dict: Dictionary; code: string; on
         {t.demoNote}: <code>{code}</code>
       </p>
       <div className="row">
-        <label className="field grow">
+        <label className="field grow field--inline">
           <span className="sr-only">{t.codeLabel}</span>
           <input
             value={value}
@@ -125,6 +134,9 @@ function CodeForm({ dict, code, onUnlock }: { dict: Dictionary; code: string; on
             }}
             placeholder={t.codeLabel}
             autoCapitalize="characters"
+            // After an unlock, move focus to the next stop's code so keyboard and
+            // screen-reader users continue where the reveal happened.
+            autoFocus={focus}
             autoComplete="off"
           />
         </label>

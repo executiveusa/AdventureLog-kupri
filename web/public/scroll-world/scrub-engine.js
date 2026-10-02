@@ -246,9 +246,11 @@ function mountScrollWorld(container, config) {
       const pr = clamp((y - seg.start) / (seg.end - seg.start), 0, 1);
       const before = y < seg.start, after = y > seg.end;
       let cop;
-      if (i === 0) cop = after ? 0 : smooth(1 - pr / 0.62);            // greets on landing
-      else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.4);       // holds CTA at the end
-      else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
+      // Querencia change: copy holds at full opacity for most of each scene and only
+      // cross-fades near the seams, so a visitor who stops scrolling can always read it.
+      if (i === 0) cop = after ? 0 : smooth((0.86 - pr) / 0.2);        // greets on landing
+      else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.16);      // holds CTA at the end
+      else cop = (before || after) ? 0 : smooth((0.5 - Math.abs(pr - 0.5)) / 0.16);
       const c = copies[i];
       c.style.opacity = cop;
       c.style.transform = reduce ? 'none' : `translateY(${(0.5 - pr) * 4}vh)`;

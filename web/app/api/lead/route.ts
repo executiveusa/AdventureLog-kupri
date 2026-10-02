@@ -12,8 +12,9 @@ const leadSchema = z.object({
   regions: z.array(z.enum(["cdmx", "morelos", "valle", "vallarta"])).max(4).default([]),
   dates: z.string().trim().max(120).optional(),
   group: z.enum(["1-2", "3-6", "7-12", "13+"]).optional(),
-  budget: z.enum(["lt5k", "5-10k", "10-25k", "25k+", "talk"]).optional(),
-  message: z.string().trim().max(1000).optional(),
+  // Bands are the visitor's own estimate: MXN on /es, USD on /en (see `locale`).
+  budget: z.enum(["tier1", "tier2", "tier3", "tier4", "talk"]).optional(),
+  gift: z.boolean().default(false),
   source: z.enum(["trip", "gift", "portfolio"]).default("trip"),
   locale: z.enum(["es", "en"]).default("es"),
   // Honeypot: real people never fill this.
@@ -59,6 +60,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         ...lead,
         channel: lead.contact.includes("@") ? "email" : "whatsapp",
+        currency: lead.locale === "es" ? "MXN" : "USD",
         site: "querencia",
         receivedAt: new Date().toISOString(),
       }),

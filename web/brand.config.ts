@@ -20,11 +20,13 @@ export const BRAND = {
     name: process.env.NEXT_PUBLIC_CREDIT_NAME || "",
     url: process.env.NEXT_PUBLIC_CREDIT_URL || "",
   },
+  // Apple-style gallery with one Mexican accent: barro (clay), reserved for action.
   colors: {
-    ink: "#15120f",
-    paper: "#f3ede4",
-    accent: "#c4704f", // cantera rose
-    thermal: "#2f6f6a",
+    ink: "#1d1d1f",
+    canvas: "#ffffff",
+    mist: "#f5f3ef",
+    accent: "#b4471f",
+    film: "#0b0a09",
   },
 } as const
 

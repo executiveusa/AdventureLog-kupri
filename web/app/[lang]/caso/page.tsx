@@ -22,7 +22,7 @@ export default async function CaseStudyPage({ params, searchParams }: Props) {
 
   if (embed === "1") {
     return (
-      <main className="embed">
+      <main className="embed gallery">
         <div className="embed__art" aria-hidden />
         <div className="embed__body">
           <p className="eyebrow">{dict.caso.eyebrow}</p>
@@ -40,8 +40,8 @@ export default async function CaseStudyPage({ params, searchParams }: Props) {
   return (
     <>
       <SiteHeader dict={dict} path="/caso" />
-      <main className="page">
-        <section className="section wrap narrow">
+      <main className="page gallery">
+        <section className="section section--top wrap narrow">
           <p className="eyebrow">{dict.caso.eyebrow}</p>
           <h1 className="display">{dict.caso.title}</h1>
           <p className="lede muted">{dict.caso.intro}</p>
@@ -61,8 +61,8 @@ export default async function CaseStudyPage({ params, searchParams }: Props) {
             {dict.caso.visit}
           </Link>
         </section>
+        <SiteFooter dict={dict} path="/caso" />
       </main>
-      <SiteFooter dict={dict} />
     </>
   )
 }
